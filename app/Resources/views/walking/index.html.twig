@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {#<link rel="stylesheet" href={{ asset('/assets/vendor/css/style.css') }}>#}
+    <style>
+        th.header_cursor
+        {
+          cursor: pointer;
+          font-weight: bold;
+          background-repeat: no-repeat;
+          background-position: center left;
+        }
+        tr:hover
+        {
+          background-color: rgb(80,80,80);
+        }
+        .graphic
+        {
+            height:100%;
+            min-height: 150px;
+            background-color: rgb(80,80,80);
+            position: relative;
+            bottom:0;
+            left:0;
+        }
+        .code
+        {
+            background-color: rgb(80,80,80);
+            color: whitesmoke;
+        }
+        .barre
+        {
+            position: absolute;
+            width: 50px;
+            bottom:0;
+            left:10px;
+            max-height: 148px;
+        }
+    </style>
+
+{% endblock %}
+{#end block stylesheets#}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container" id="table">
+        <h1>Walking list</h1>
+        <br>
+        <table class="tablesorter table table-condensed" id="myTable">
+            <thead>
+                <tr>
+                    <th class="header_cursor">Id</th>
+                    <th class="header_cursor">Date</th>
+                    <th class="header_cursor">Distance</th>
+                    <th class="header_cursor">Step</th>
+                    <th class="header_cursor">Comment</th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for walking in walkings %}
+                <tr data-url="{{ path('walking_row', {'id': walking.id}) }}">
+                    <td>{{ walking.id }}</td>
+                    <td>{{ walking.date|date("d/m/Y") }}</td>
+                    <td>{{ walking.distance }}</td>
+                    <td>{{ walking.step }}</td>
+                    <td>{{ walking.comment }}</td>
+                    <td>
+                        <a href="{{ path('walking_show', { 'id': walking.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
+                        <a href="{{ path('walking_edit', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
+                        <a href="{{ path('walking_delete', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-remove" role="button"></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <div class="row">
+            <br>
+            <div class="col col-md-2">
+                <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
+            </div>
+            <div class="col col-md-2">
+                <a id="display_hide_list" href="#">Display/Hide List</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="graphic">
+            <code class="code">Click on row to display graphic</code>
+            <div class="barre"></div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript"  src={{ asset('/assets/vendor/js/jquery.tablesorter.min.js') }}></script>
+
+       <script>
+        $(document).ready(function() {
+
+            var table = $('#table');
+            var display_hide_list = $('#display_hide_list');
+            var protocole = 'http://';
+            var ip = '127.0.0.1';
+            var port = ':80';
+            var barre = $('.barre');
+            var graphic = $('.graphic');
+            var code = $('.code');
+
+            // tablesorter
+            $('#myTable').tablesorter();
+
+            // display/add table
+            display_hide_list.click(function () {
+                table.slideToggle('slow');
+            });
+
+            for ( var i = 0; i < 6; i++ ) {
+                code.fadeToggle('slow');
+            };
+
+            // Response at request row (rowAction) to js object
+            $('tr')
+                .click(function () {
+                    code.hide();
+                    var url = protocole + ip + port + $(this).attr('data-url');
+
+                    var jqxhr = $.ajax( {'url':url, 'async':true}  )
+                        .done(function(data ) {
+                            var json = JSON.parse(data);
+                            //console.log( json.step );
+                            myFunction(json.step);
+                        })
+                        .fail(function() {
+                            console.log( "error" );
+                        })
+            })
+
+                // Animate
+               function myFunction (pas) {
+                var px = 0;
+                barre.css( 'height', px );
+                px = parseInt(Math.round(pas/100));
+                //console.log (px);
+
+                if (pas >= 5000 && pas < 10000) {
+                    barre
+                        .css('background-color', 'orange')
+                        .animate({ height: '+=' + px + 'px' }, 500 );
+                }
+                else if  (pas < 5000 ) {
+                    barre
+                        .css('background-color', '#FE2E2E')
+                        .animate({ height: '+=' + px + 'px' }, 500 );
+                }
+                else if  (pas >= 10000 ) {
+                    barre
+                        .css('background-color', 'rgb(109,202,78)')
+                        .animate({  height: '+=' + px + 'px' }, 500   );
+                }
+            }
+        })
+    </script>
+{% endblock %}

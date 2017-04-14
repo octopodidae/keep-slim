@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+
+        li {
+            list-style: none;
+        }
+
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <h1>Walking edit</h1>
+        <br>
+        {% form_theme edit_form 'bootstrap_3_layout.html.twig'  %}
+        {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+        <input type="submit" value="Save" class="btn btn-warning" />
+        {{ form_end(edit_form) }}
+
+        <br>
+
+        <p><a href="{{ path('walking_index') }}">Back to the list</a></p>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+
+        li {
+            list-style: none;
+        }
+
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <h1>Walking creation</h1>
+        <br>
+        {% form_theme form 'bootstrap_3_layout.html.twig'  %}
+
+        {{ form_start(form) }}
+            {{ form_widget(form, {'attr': {'class': 'form-group'}}) }}
+
+            <input type="submit" value="Create" class="btn btn-primary" />
+        {{ form_end(form) }}
+
+        <br><p><a href="{{ path('walking_index') }}">Back to the list</a></p>
+
+    </div>
+{% endblock %}

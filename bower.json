@@ -1,0 +1,21 @@
+{
+  "name": "bower.json",
+  "homepage": "https://github.com/octopodidae/keep_slim",
+  "authors": [
+    "blaurancin <blaurancin@gmail.com>"
+  ],
+  "description": "bower dependencies",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
