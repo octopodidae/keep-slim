@@ -122,42 +122,38 @@ class WalkingController extends Controller
         return $this->redirectToRoute('walking_index');
     }
 
-    /**
-     * Deletes a walking entity.
-     *
-     * @Route("/row/{id}", name="walking_row")
-     * @Method({"GET", "POST"})
-     */
-    public function rowAction($id)
-    {
-        $em = $this
-                ->getDoctrine()
-                ->getManager()
-                ->getRepository('AppBundle:Walking');
-
-        $walking = $em->findOneById($id);
-        $row = json_encode(array('distance'=>$walking->getDistance(), 'step' => $walking->getStep(), 'date' => $walking->getDate()));
-        return new Response($row);
-
-    }
-
+    
    /**
-     * list last rows
+     * load rows with setMaxResults
      *
-     * @Route("/lastrows", name="walking_lastrows")
-     * @Method({"GET", "POST"})
+     * @Route("/load/{number}", name="walking_load")
+     * @Method({"GET"})
      */
-    public function lastrowsAction(){
-        
+    public function loadAction($number){
+
         $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT w
+            FROM AppBundle:Walking w
+            WHERE 1=1'
+        );
 
-        $walkings = $em->getRepository('AppBundle:Walking')->findBy(array(), array('date' => 'desc'));
+        $walkings = $query->setMaxResults($number)->getResult();
 
-        $lastrows = json_encode($walkings);
+        $rows = array();
 
-        //$type = gettype($lastrows);
+        foreach ($walkings as $walking) {
+            array_push($rows, $walking->getStep());
+        }
 
-        return new Response($lastrows);
+        $rows = json_encode($rows);
+
+        return new Response($rows);
+        
+        //$type = gettype($rows);
+        //var_dump($type);die();
+
+        
                
     }
 }

@@ -138,20 +138,30 @@
             var ip = '127.0.0.1';
             var port = ':8081';
             var barre = $('.barre');
-            //var graphic_area = $('.graphic-area');
+            var graphic_area = $('.graphic-area');
             var code = $('.code');
             var mySlider = $('#mySlider');
+
+            function loadData(){
+
+                
+            }
 
             mySlider
                 .slider({
                     formatter: function(value) {
-                        //console.log(value);
                         return value;
                     }
                 })
                 .on('slideStop', function(event) {
-                    console.log($(this).slider('getValue'));
+                    var value = $(this).slider('getValue');
+                    console.log(value);
+                    graphic_area.empty();
+                    for (var i=0; i<value;i++ ){
+                        $('<span> test </span>').appendTo(graphic_area);
+                    }
                 });
+
 
             // tablesorter
             table.tablesorter();
@@ -171,7 +181,7 @@
                     code.hide();
                     var url = protocole + ip + port + $(this).attr('data-url');
 
-                    var jqxhr = $.ajax( {'url':url, 'async':true}  )
+                    var jqxhr = $.ajax( {'url':url, 'async':true, 'cache':true}  )
                         .done(function(data ) {
                             var json = JSON.parse(data);
                             //console.log( json.step );
