@@ -20,7 +20,7 @@ class WalkingController extends Controller
     /**
      * Lists all walking entities.
      *
-     * @Route("/", name="walking_index")
+     * @Route("/index", name="walking_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -130,10 +130,34 @@ class WalkingController extends Controller
      */
     public function rowAction($id)
     {
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Walking');
-        $walking = $repository->findOneById($id);
+        $em = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('AppBundle:Walking');
+
+        $walking = $em->findOneById($id);
         $row = json_encode(array('distance'=>$walking->getDistance(), 'step' => $walking->getStep(), 'date' => $walking->getDate()));
         return new Response($row);
 
+    }
+
+   /**
+     * list last rows
+     *
+     * @Route("/lastrows", name="walking_lastrows")
+     * @Method({"GET", "POST"})
+     */
+    public function lastrowsAction(){
+        
+        $em = $this->getDoctrine()->getManager();
+
+        $walkings = $em->getRepository('AppBundle:Walking')->findBy(array(), array('date' => 'desc'));
+
+        $lastrows = json_encode($walkings);
+
+        //$type = gettype($lastrows);
+
+        return new Response($lastrows);
+               
     }
 }
