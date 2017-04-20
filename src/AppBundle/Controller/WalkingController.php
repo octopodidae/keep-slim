@@ -122,14 +122,27 @@ class WalkingController extends Controller
         return $this->redirectToRoute('walking_index');
     }
 
-    
+    /**
+     * Generate url for row a walking entity.
+     *
+     * @Route("/row/{id}", name="walking_row")
+     * @Method({"GET", "POST"})
+     */
+    public function rowAction($id)
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Walking');
+        $walking = $repository->findOneById($id);
+        $row = json_encode(array('distance'=>$walking->getDistance(), 'step' => $walking->getStep(), 'date' => $walking->getDate()));
+        return new Response($row);
+    }
+
    /**
      * load rows with setMaxResults
      *
-     * @Route("/load/{number}", name="walking_load")
+     * @Route("/load/{nb}", name="walking_load")
      * @Method({"GET"})
      */
-    public function loadAction($number){
+    public function loadAction($nb){
 
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
@@ -138,7 +151,7 @@ class WalkingController extends Controller
             WHERE 1=1'
         );
 
-        $walkings = $query->setMaxResults($number)->getResult();
+        $walkings = $query->setMaxResults($nb)->getResult();
 
         $rows = array();
 
@@ -152,8 +165,6 @@ class WalkingController extends Controller
         
         //$type = gettype($rows);
         //var_dump($type);die();
-
-        
-               
+              
     }
 }
