@@ -113,7 +113,9 @@ $(document).ready(function() {
                             'background-color': '#f5f5f5'
                         });
                 }
-                line.fadeIn(2000);
+                line.fadeToggle( "slow", "linear", function() {
+                    line.show();
+                });
                 $('.my-span').fadeIn(1500);
             }
         })
