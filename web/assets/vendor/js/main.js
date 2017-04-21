@@ -2,7 +2,8 @@ $(document).ready(function() {
 
             var table = $('#myTable');
             var div_table = $('#div_table');
-            var display_hide_list = $('#display_hide_list');
+            var display_hide_table = $('#display_hide_table');
+            var show_hide_all = $('#show_hide_all');
             var protocole = 'http://';
             var ip = '127.0.0.1';
             var port = ':8081';
@@ -13,7 +14,15 @@ $(document).ready(function() {
             var margin_left = 0;
             var speed = 500;
             var line = $('#line');
-                        
+            var lastrows = $('tr').slice(10,-1); // from 10 index to end rows of table
+            
+            //lastrows.hide();
+
+            // display/hide table
+            show_hide_all.click(function () {
+                lastrows.slideToggle('speed');
+            });
+
             // values displayed in the tooltip of slider
             my_slider
                .slider({
@@ -55,7 +64,7 @@ $(document).ready(function() {
             table.tablesorter();
 
             // display/hide table
-            display_hide_list.click(function () {
+            display_hide_table.click(function () {
                 div_table.slideToggle('slow');
             });
 

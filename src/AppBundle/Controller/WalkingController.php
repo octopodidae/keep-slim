@@ -160,9 +160,5 @@ class WalkingController extends Controller
         $rows = json_encode($rows);
 
         return new Response($rows);
-        
-        //$type = gettype($rows);
-        //var_dump($type);die();
-              
     }
 }
