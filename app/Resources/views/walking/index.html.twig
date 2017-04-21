@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href={{ asset('assets/vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/vendor/seiyria-bootstrap-slider/bootstrap-slider.min.css') }}>
     <style>
         th.header_cursor {
           cursor: pointer;
@@ -138,6 +138,6 @@
     {{ parent() }}
 
     <script type="text/javascript"  src={{ asset('/assets/vendor/js/jquery.tablesorter.min.js') }}></script>
-    <script type="text/javascript"  src={{ asset('assets/vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js') }}></script>
+    <script type="text/javascript"  src={{ asset('assets/vendor/seiyria-bootstrap-slider/bootstrap-slider.min.js') }}></script>
     <script type="text/javascript"  src={{ asset('/assets/vendor/js/main.js') }}></script>
 {% endblock %}

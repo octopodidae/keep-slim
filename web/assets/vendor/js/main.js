@@ -16,12 +16,25 @@ $(document).ready(function() {
             var line = $('#line');
             var lastrows = $('tr').slice(10,-1); // from 10 index to end rows of table
             
-            //lastrows.hide();
+            lastrows.hide();
 
-            // display/hide table
+            // Show/hide All
             show_hide_all.click(function () {
                 lastrows.slideToggle('speed');
             });
+
+            // display/hide table
+            display_hide_table.click(function () {
+                div_table.slideToggle('slow');
+            });
+
+            // Tablesorter
+            table.tablesorter();
+
+            // Blinking message into graphic area
+            for ( var i = 0; i < 6; i++ ) {
+                code.fadeToggle('slow');
+            };
 
             // values displayed in the tooltip of slider
             my_slider
@@ -30,6 +43,13 @@ $(document).ready(function() {
                         return value;
                     }
                 });
+
+            // Slider dragging stops -> Call load data / animate graphic functions
+            my_slider 
+            .on('slideStop', function(event) {
+                var value = $(this).slider('getValue');
+                loadData(value);
+             });
 
             // Animate multi graphics with slider
             var loadData = function loadData(nb){
@@ -52,26 +72,6 @@ $(document).ready(function() {
                     console.log( "error" );
                 })
             }
-
-            // Slider dragging stops -> Call load data / animate graphic functions
-            my_slider 
-            .on('slideStop', function(event) {
-                var value = $(this).slider('getValue');
-                loadData(value);
-             });
-
-            // Tablesorter
-            table.tablesorter();
-
-            // display/hide table
-            display_hide_table.click(function () {
-                div_table.slideToggle('slow');
-            });
-
-            // Blinking message into graphic area
-            for ( var i = 0; i < 6; i++ ) {
-                code.fadeToggle('slow');
-            };
 
             // Animate unique graphic on click
             $('tr')
