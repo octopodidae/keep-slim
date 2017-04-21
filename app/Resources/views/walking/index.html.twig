@@ -43,10 +43,19 @@
             font-size: 0.8em;
             font-weight: bold;
         }
-        .my-spans 
+        .my-span 
         {
             position: relative;
             display: none;
+        }
+        #line
+        {
+            position: absolute;
+            bottom: 100px;
+            display: none;
+            height: 1px;
+            width: 100%;
+            background-color: rgb(109,202,78);
         }
     </style>
 
@@ -110,6 +119,7 @@
         </div>
         <div class="graphic-area">
             <code class="code">Click on row or use the slider to display graphic</code>
+            <div id="line"></div>
         </div>
     </div>
 

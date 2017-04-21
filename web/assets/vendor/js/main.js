@@ -6,13 +6,13 @@ $(document).ready(function() {
             var protocole = 'http://';
             var ip = '127.0.0.1';
             var port = ':8081';
-            var barre = $('.barre');
             var graphic_area = $('.graphic-area');
             var code = $('.code');
             var my_slider = $('#my_slider');
             var url_load = 'http://' + ip + port + '/keep_slim/web/app_dev.php/walking/load';
             var margin_left = 0;
             var speed = 500;
+            var line = $('#line');
                         
             // values displayed in the tooltip of slider
             my_slider
@@ -28,7 +28,8 @@ $(document).ready(function() {
                 $.ajax( {'url':url_load + '/' + nb, 'async':true, 'cache':true}  )
                 .done(function( data ) {
                     var json = JSON.parse(data);
-                    graphic_area.empty();
+                    code.remove();
+                    graphic_area.children('.my-div').remove();
                     margin_left = 0;
                     for (var i=0; i<json.length;i++ ){
                         margin_left+=50;
@@ -41,7 +42,6 @@ $(document).ready(function() {
                 .fail(function() {
                     console.log( "error" );
                 })
-
             }
 
             // Slider dragging stops -> Call load data / animate graphic functions
@@ -67,7 +67,8 @@ $(document).ready(function() {
             // Animate unique graphic on click
             $('tr')
                 .click(function () {
-                    graphic_area.empty();
+                    code.remove();
+                    graphic_area.children('.my-div').remove();
                     var url = protocole + ip + port + $(this).attr('data-url');
                     var jqxhr = $.ajax( {'url':url, 'async':true, 'cache':true}  )
                         .done(function( data ) {
@@ -84,25 +85,35 @@ $(document).ready(function() {
                 var px = 0;
                 div.css( 'height', px );
                 px = parseInt(Math.round(step/100));
-                div.html('<span style="bottom: ' + 13 + 'px; ' + '"' + 'class="my-spans" >' + step + '</span>');
+                div.html('<span style="bottom: ' + 13 + 'px; ' + '"' + 'class="my-span" >' + step + '</span>');
                 if (step >= 5000 && step < 10000) {
                     div
                         .css('background-color', 'orange')
                         .animate({ height: '+=' + px + 'px' }, speed)
-                        .children('span').css('color', 'orange');
+                        .children('span').css({
+                            color: 'orange',
+                            'background-color': '#f5f5f5'
+                        });
                 }
                 else if  (step < 5000 ) {
                     div
                         .css('background-color', '#FE2E2E')
                         .animate({ height: '+=' + px + 'px' }, speed)
-                        .children('span').css('color', '#FE2E2E');
+                        .children('span').css({
+                            color: '#FE2E2E',
+                            'background-color': '#f5f5f5'
+                        });
                 }
                 else if  (step >= 10000 ) {
                     div
                         .css('background-color', 'rgb(109,202,78)')
                         .animate({  height: '+=' + px + 'px' }, speed)
-                        .children('span').css('color', 'rgb(109,202,78)');
+                        .children('span').css({
+                            color: 'rgb(109,202,78)',
+                            'background-color': '#f5f5f5'
+                        });
                 }
-                $('.my-spans').fadeIn(1500);
+                line.fadeIn(2000);
+                $('.my-span').fadeIn(1500);
             }
         })
