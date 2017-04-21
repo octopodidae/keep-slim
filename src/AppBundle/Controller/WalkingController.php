@@ -146,9 +146,7 @@ class WalkingController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
-            'SELECT w
-            FROM AppBundle:Walking w
-            WHERE 1=1'
+            'SELECT w FROM AppBundle:Walking w WHERE 1=1 ORDER BY w.date DESC'
         );
 
         $walkings = $query->setMaxResults($nb)->getResult();

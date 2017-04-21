@@ -13,7 +13,7 @@ $(document).ready(function() {
             var url_load = 'http://' + ip + port + '/keep_slim/web/app_dev.php/walking/load';
             var margin_left = 0;
             var speed = 500;
-            
+                        
             // values displayed in the tooltip of slider
             my_slider
                .slider({
@@ -44,16 +44,14 @@ $(document).ready(function() {
 
             }
 
-            // When the slider event eventType is triggered
-            // when the dragging stops
+            // Slider dragging stops -> Call load data / animate graphic functions
             my_slider 
             .on('slideStop', function(event) {
                 var value = $(this).slider('getValue');
                 loadData(value);
              });
 
-
-            // tablesorter
+            // Tablesorter
             table.tablesorter();
 
             // display/hide table
@@ -81,26 +79,30 @@ $(document).ready(function() {
                         })
             })
 
-            // Animate
+            // My Animate Graphic Function 
             function animateGraphic (step, div, speed) {
                 var px = 0;
                 div.css( 'height', px );
-                div.text(step);
                 px = parseInt(Math.round(step/100));
+                div.html('<span style="bottom: ' + 13 + 'px; ' + '"' + 'class="my-spans" >' + step + '</span>');
                 if (step >= 5000 && step < 10000) {
                     div
                         .css('background-color', 'orange')
-                        .animate({ height: '+=' + px + 'px' }, speed);
+                        .animate({ height: '+=' + px + 'px' }, speed)
+                        .children('span').css('color', 'orange');
                 }
                 else if  (step < 5000 ) {
                     div
                         .css('background-color', '#FE2E2E')
-                        .animate({ height: '+=' + px + 'px' }, speed);
+                        .animate({ height: '+=' + px + 'px' }, speed)
+                        .children('span').css('color', '#FE2E2E');
                 }
                 else if  (step >= 10000 ) {
                     div
                         .css('background-color', 'rgb(109,202,78)')
-                        .animate({  height: '+=' + px + 'px' }, speed);
+                        .animate({  height: '+=' + px + 'px' }, speed)
+                        .children('span').css('color', 'rgb(109,202,78)');
                 }
+                $('.my-spans').fadeIn(1500);
             }
         })

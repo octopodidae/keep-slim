@@ -17,12 +17,10 @@ class WalkingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateType::class,
-                array('format' => 'dd-MM-yyyy', 'widget' => 'choice', 'placeholder' => array(
-                    'day' => 'Day', 'month' => 'Month', 'year' => 'Year')))
+            ->add('date', DateType::class, array( 'widget' => 'single_text','html5'=>true))
             ->add('distance')
-            ->add('step')->
-            add('comment', TextType::class, array('required'=>false));
+            ->add('step')
+            ->add('comment', TextType::class, array('required'=>false));
     }
     
     /**
