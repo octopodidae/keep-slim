@@ -1,124 +1,109 @@
 $(document).ready(function() {
 
-            var my_table = $('#myTable');
-            var protocole = 'http://';
-            var ip = '127.0.0.1';
-            var port = ':8081';
-            var graphic_area = $('.graphic-area');
-            var code = $('.code');
-            var my_slider = $('#my_slider');
-            var url_load = 'http://' + ip + port + '/keep_slim/web/app_dev.php/walking/load';
-            var margin_left = 0;
-            var speed = 500;
-            var line = $('#line');
-            var id_rows = $('.id'); 
-            var last_nb_rows = id_rows.slice(0,5).parent();
-            var currently_animating = false;
+    var my_table = $('#myTable');
+    var protocole = 'http://';
+    var ip = '127.0.0.1';
+    var port = ':8081';
+    var graphic_area = $('.graphic-area');
+    var margin_left = 18;
+    var speed = 500;
+    var line = $('#line');
+    var previous = $('#previous');
+    var next = $('#next');
+    var rows = $('.rows');
+    var start = 0; 
+    var end = 10;
+    var steps = 0;
 
+    rows.slice(start,end).show();
+    rows.slice(start,end).each(function( index ) {
+        steps = $( this ).find(':nth-child(3)').text();
+        var style = 'style="margin-left:' + margin_left + 'px'+ '"';
+        $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style +  '>'+ steps + '</div>').appendTo(graphic_area);
+        animateGraphic(steps, $('#div_' + (index+1)), speed);
+        margin_left+=52;
+    });
 
-            /*last_nb_rows.show();
-            loadData(5); */
+    function cleanGraphiArea() {
+        graphic_area.children('.my-div').remove();
+    }
+                     
+    previous.click(function() {
+        start+=10;
+        end+=10;
+        rows.hide();
+        cleanGraphiArea();
+        rows.slice(start,end).show();
+        margin_left = 18;
+        rows.slice(start,end).each(function( index ) {
+            steps = $( this ).find(':nth-child(3)').text();
+            var style = 'style="margin-left:' + margin_left + 'px'+ '"';
+            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style +  '>'+ steps + '</div>').appendTo(graphic_area);
+            animateGraphic(steps, $('#div_' + (index+1)), speed);
+            margin_left+=52;
+        });
+    });
 
-            // Tablesorter
-            my_table.tablesorter();
+    next.click(function() {
+        start-=10;
+        end-=10;
+        rows.hide();
+        cleanGraphiArea()
+        rows.slice(start,end).show();
+        margin_left = 18;
+        rows.slice(start,end).each(function( index ) {
+            steps = $( this ).find(':nth-child(3)').text();
+            var style = 'style="margin-left:' + margin_left + 'px'+ '"';
+            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style +  '>'+ steps + '</div>').appendTo(graphic_area);
+            animateGraphic(steps, $('#div_' + (index+1)), speed);
+            margin_left+=52;
+        });
+    });
 
-            // Blinking message into graphic area
-            for ( var i = 0; i < 6; i++ ) {
-                code.fadeToggle('slow');
-            };
+    // Tablesorter
+    my_table.tablesorter();
 
-            // values displayed in the tooltip of slider
-            /*my_slider
-               .slider({
-                    formatter: function(value) {
-                        return value;
-                    }
-                });*/
+    // Blinking message into graphic area
+    for ( var i = 0; i < 6; i++ ) {
+        code.fadeToggle('slow');
+    };
 
-            // Slider dragging stops -> Call load data / animate graphic functions
-            /*my_slider 
-            .on('slideStop', function(event) {
-                var value = $(this).slider('getValue');
-                id_rows.parent().hide();
-                id_rows.slice(0,value).parent().show();
-                graphic_area.children('.my-div').remove();
-                loadData(value);
-             });*/
-
-            // Animate multi graphics with slider
-            /*function loadData(nb){
-                var jqxhr = 
-                $.ajax( {'url':url_load + '/' + nb, 'async':true, 'cache':true}  )
-                .done(function( data ) {
-                    var json = JSON.parse(data);
-                    code.remove();
-                    graphic_area.children('.my-div').remove();
-                    margin_left = 5;
-                    for (var i=0; i<json.length;i++ ){
-                        margin_left+=42;
-                        var step = json[i];
-                        var style = 'style="margin-left:' + margin_left + 'px'+ '"';
-                        $('<div class="my-div text-center"' + ' id="div_' + (i+1) + '" ' +  style +  '>'+ json[i] + '</div>').appendTo(graphic_area);
-                        animateGraphic(step, $('#div_' + (i+1)), speed);;
-                    }
-                })
-                .fail(function() {
-                    console.log( "error" );
-                })
-            }*/
-
-            // Animate unique graphic on click
-            /*$('tr')
-                .click(function () {
-                    code.remove();
-                    graphic_area.children('.my-div').remove();
-                    var url = protocole + ip + port + $(this).attr('data-url');
-                    var jqxhr = $.ajax( {'url':url, 'async':true, 'cache':true}  )
-                        .done(function( data ) {
-                            var json = JSON.parse(data);
-                            animateGraphic(json.step, $('<div class="my-div text-center"></div>').appendTo(graphic_area), speed);
-                        })
-                        .fail(function() {
-                            console.log( "error" );
-                        })
-            })*/
-
-            // My Animate Graphic Function 
-            function animateGraphic (step, div, speed) {
-                var px = 0;
-                div.css( 'height', px );
-                px = parseInt(Math.round(step/100));
-                div.html('<span style="bottom: ' + 13 + 'px; ' + '"' + 'class="my-span" >' + step + '</span>');
-                if (step >= 5000 && step < 10000) {
-                    div
-                        .css('background-color', 'orange')
-                        .animate({ height: '+=' + px + 'px' }, speed)
-                        .children('span').css({
-                            color: 'orange',
-                            'background-color': '#f5f5f5'
-                        });
-                }
-                else if  (step < 5000 ) {
-                    div
-                        .css('background-color', '#FE2E2E')
-                        .animate({ height: '+=' + px + 'px' }, speed)
-                        .children('span').css({
-                            color: '#FE2E2E',
-                            'background-color': '#f5f5f5'
-                        });
-                }
-                else if  (step >= 10000 ) {
-                    div
-                        .css('background-color', 'rgb(109,202,78)')
-                        .animate({  height: '+=' + px + 'px' }, speed)
-                        .children('span').css({
-                            color: 'rgb(109,202,78)',
-                            'background-color': '#f5f5f5'
-                        });
-                }
-                line.fadeToggle( "slow", "linear", function() {
-                    line.show();
+    // My Animate Graphic Function 
+    function animateGraphic (steps, div, speed) {
+        var px = 0;
+        div.css( 'height', px );
+        px = parseInt(Math.round(steps/100));
+        div.html('<span style="bottom: ' + 13 + 'px; ' + '"' + 'class="my-span" >' + steps + '</span>');
+        if (steps >= 5000 && steps < 10000) {
+            div
+                .css('background-color', 'orange')
+                .animate({ height: '+=' + px + 'px' }, steps)
+                .children('span').css({
+                    color: 'orange',
+                    'background-color': '#f5f5f5'
                 });
-                $('.my-span').fadeIn(1500);
-            }
+        }
+        else if  (steps < 5000 ) {
+            div
+                .css('background-color', '#FE2E2E')
+                .animate({ height: '+=' + px + 'px' }, speed)
+                .children('span').css({
+                    color: '#FE2E2E',
+                    'background-color': '#f5f5f5'
+                });
+        }
+        else if  (steps >= 10000 ) {
+            div
+                .css('background-color', 'rgb(109,202,78)')
+                .animate({  height: '+=' + px + 'px' }, speed)
+                .children('span').css({
+                    color: 'rgb(109,202,78)',
+                    'background-color': '#f5f5f5'
+                });
+        }
+        line.fadeToggle( "slow", "linear", function() {
+            line.show();
+        });
+        $('.my-span').fadeIn(1500);
+    }
 })

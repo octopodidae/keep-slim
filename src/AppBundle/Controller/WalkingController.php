@@ -135,30 +135,4 @@ class WalkingController extends Controller
         $row = json_encode(array('distance'=>$walking->getDistance(), 'step' => $walking->getStep(), 'date' => $walking->getDate()));
         return new Response($row);
     }
-
-   /**
-     * load rows with setMaxResults
-     *
-     * @Route("/load/{nb}", name="walking_load")
-     * @Method({"GET"})
-     */
-    public function loadAction($nb){
-
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT w FROM AppBundle:Walking w WHERE 1=1 ORDER BY w.date DESC'
-        );
-
-        $walkings = $query->setMaxResults($nb)->getResult();
-
-        $rows = array();
-
-        foreach ($walkings as $walking) {
-            array_push($rows, $walking->getStep());
-        }
-
-        $rows = json_encode($rows);
-
-        return new Response($rows);
-    }
 }

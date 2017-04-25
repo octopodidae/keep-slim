@@ -1,13 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href={{ asset('assets/vendor/seiyria-bootstrap-slider/bootstrap-slider.min.css') }}>
     <style>
-        th.header_cursor {
+        th.header_cursor, .page-item {
           cursor: pointer;
-          font-weight: bold;
-          background-repeat: no-repeat;
-          background-position: center left;
         }
         .rows:hover {
           background-color: #f5f5f5;
@@ -21,17 +17,12 @@
             left:0;
             border-radius: 4px;
         }
-        .code
-        {
-            background-color: #f5f5f5;
-            color: #337ab7;
-        }
         #ex1Slider .slider-selection {
             background: #BABABA;
         }
         .my-div {
             position: absolute;
-            width: 40px;
+            width: 50px;
             bottom:0;
             max-height: 188px;
             color: black;
@@ -58,12 +49,9 @@
         #myTable > tfoot > tr > td {
           padding: 1px;
         }
-        /*.rows {
+        .rows {
             display: none;
-        }*/
-        /*th#th_id, td.id{
-            display: none;
-        } */
+        }
     </style>
 
 {% endblock %}
@@ -71,20 +59,19 @@
 
 {% block body %}
     {{ parent() }}
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <h1 class="text-left">&nbsp&nbsp Walking list</h1>
             <br>
             <br>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6"> {# table #}
                 <div id="div_table">
-                    {# table #}
                     <table class="tablesorter table table-condensed" id="myTable">
                         <thead>
                             <tr>
-                                <th class="header_cursor" id="th_id">Id</th>
+                                {# <th class="header_cursor" id="th_id">Id</th> #}
                                 <th class="header_cursor">Date</th>
                                 <th class="header_cursor">Distance</th>
                                 <th class="header_cursor">Step</th>
@@ -95,7 +82,7 @@
                         <tbody>
                         {% for walking in walkings %}
                             <tr data-url="{{ path('walking_row', {'id': walking.id}) }}" class="rows">
-                                <td class="id">{{ walking.id }}</td>
+                                {# <td>{{ walking.id }}</td> #}
                                 <td>{{ walking.date|date("d/m/Y") }}</td>
                                 <td>{{ walking.distance }}</td>
                                 <td>{{ walking.step }}</td>
@@ -109,33 +96,47 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                </div> {# end div_table #}
-            </div> 
+                </div> 
+            </div> {# end table #}
 
-            <div class="col-md-6">
+            <div class="col-md-6"> {# graphic area #}
                 <br>
                 <div class="graphic-area">
-                    <code class="code">Click on row or use the slider to display graphic</code>
                     <div id="line"></div>
                 </div>
                 <br>
-                {# Slider #}
-                <div class="well">
-                   <input id="my_slider" data-slider-id="ex1Slider" type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="5" style="display: none;">
-                </div>
-            </div>
-        </div>
-        <div class="row breadcrumb">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a class="page-link" aria-label="Previous" id="previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" aria-label="Next" id="next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+            </div> {# graphic area #}
+        </div> {# end row #}
+        <div class="row">
             <div class="col col-md-2">
                 <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
             </div>
-       {# <div class="col col-md-2">
+        {# <div class="col col-md-2">
                 <a id="display_hide_table" href="#">Display/Hide Table</a>
             </div> #}
             {# <div class="col col-md-2">
                 <a id="show_hide_all" href="#">Show / Hide All</a>
             </div> #}
-        </div>
+        </div>   
     </div> {# end container #}
 
 {% endblock %}
