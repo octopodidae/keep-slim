@@ -1,9 +1,6 @@
 $(document).ready(function() {
 
-            var table = $('#myTable');
-            var div_table = $('#div_table');
-            var display_hide_table = $('#display_hide_table');
-            var show_hide_all = $('#show_hide_all');
+            var my_table = $('#myTable');
             var protocole = 'http://';
             var ip = '127.0.0.1';
             var port = ':8081';
@@ -14,22 +11,16 @@ $(document).ready(function() {
             var margin_left = 0;
             var speed = 500;
             var line = $('#line');
-            var lastrows = $('tr').slice(10,-1); // from 10 index to end rows of table
-            
-            lastrows.hide();
+            var id_rows = $('.id'); 
+            var last_nb_rows = id_rows.slice(0,5).parent();
+            var currently_animating = false;
 
-            // Show/hide All
-            show_hide_all.click(function () {
-                lastrows.slideToggle('speed');
-            });
 
-            // display/hide table
-            display_hide_table.click(function () {
-                div_table.slideToggle('slow');
-            });
+            /*last_nb_rows.show();
+            loadData(5); */
 
             // Tablesorter
-            table.tablesorter();
+            my_table.tablesorter();
 
             // Blinking message into graphic area
             for ( var i = 0; i < 6; i++ ) {
@@ -37,44 +28,47 @@ $(document).ready(function() {
             };
 
             // values displayed in the tooltip of slider
-            my_slider
+            /*my_slider
                .slider({
                     formatter: function(value) {
                         return value;
                     }
-                });
+                });*/
 
             // Slider dragging stops -> Call load data / animate graphic functions
-            my_slider 
+            /*my_slider 
             .on('slideStop', function(event) {
                 var value = $(this).slider('getValue');
+                id_rows.parent().hide();
+                id_rows.slice(0,value).parent().show();
+                graphic_area.children('.my-div').remove();
                 loadData(value);
-             });
+             });*/
 
             // Animate multi graphics with slider
-            var loadData = function loadData(nb){
+            /*function loadData(nb){
                 var jqxhr = 
                 $.ajax( {'url':url_load + '/' + nb, 'async':true, 'cache':true}  )
                 .done(function( data ) {
                     var json = JSON.parse(data);
                     code.remove();
                     graphic_area.children('.my-div').remove();
-                    margin_left = 0;
+                    margin_left = 5;
                     for (var i=0; i<json.length;i++ ){
-                        margin_left+=50;
+                        margin_left+=42;
                         var step = json[i];
                         var style = 'style="margin-left:' + margin_left + 'px'+ '"';
                         $('<div class="my-div text-center"' + ' id="div_' + (i+1) + '" ' +  style +  '>'+ json[i] + '</div>').appendTo(graphic_area);
-                        animateGraphic(step, $('#div_' + (i+1)), speed);
+                        animateGraphic(step, $('#div_' + (i+1)), speed);;
                     }
                 })
                 .fail(function() {
                     console.log( "error" );
                 })
-            }
+            }*/
 
             // Animate unique graphic on click
-            $('tr')
+            /*$('tr')
                 .click(function () {
                     code.remove();
                     graphic_area.children('.my-div').remove();
@@ -87,7 +81,7 @@ $(document).ready(function() {
                         .fail(function() {
                             console.log( "error" );
                         })
-            })
+            })*/
 
             // My Animate Graphic Function 
             function animateGraphic (step, div, speed) {
@@ -127,4 +121,4 @@ $(document).ready(function() {
                 });
                 $('.my-span').fadeIn(1500);
             }
-        })
+})
