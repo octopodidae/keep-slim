@@ -52,8 +52,11 @@
         .rows {
             display: none;
         }
-        .disabled {
-            pointer-events: none;
+        .glyphicon-cog {
+            color: #337ab7;
+        }
+        #search_by_date {
+            margin-left: 16%;
         }
     </style>
 
@@ -93,7 +96,7 @@
                                 <td>
                                     <a href="{{ path('walking_show', { 'id': walking.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
                                     <a href="{{ path('walking_edit', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
-                                    <a href="{{ path('walking_delete', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-remove" role="button"></a>
+                                    <a href="{{ path('walking_delete', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-trash" role="button"></a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -108,37 +111,46 @@
                     <div id="line"></div>
                 </div>
                 <br>
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <li class="page-item" id="previous">
-                      <a class="page-link" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                    </li>
-                    {# <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li> #}
-                    <li class="page-item" id="next">
-                      <a class="page-link" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+                <div class="row">
+                    <div class="col col-md-6">
+                        <nav>
+                          <ul class="pagination pagination-sm">
+                            <li class="page-item disabled" id="first"><a class="page-link" href="#">&larr; First</a></li>
+                            <li class="page-item" id="previous">
+                              <a class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span>Previous</span>
+                              </a>
+                            </li>
+                            <li class="page-item" id="next">
+                              <a class="page-link" aria-label="Next">
+                                <span>Next</span>
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                            <li class="page-item disabled" id="last"><a class="page-link" href="#">Last &rarr;</a></li>
+                          </ul>
+                        </nav>
+                    </div>
+                    <div class="col col-md-5">
+                        <br>
+                        <div class="input-group input-group-sm">
+                          <input type="date" class="form-control" id="search_by_date">
+                        </div>
+                    </div>
+                    <div class="col col-md-1">
+                        <br>
+                        <button type="button" class="btn btn-default btn-sm" id="settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
             </div> {# graphic area #}
         </div> {# end row #}
         <div class="row">
             <div class="col col-md-2">
                 <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
             </div>
-        {# <div class="col col-md-2">
-                <a id="display_hide_table" href="#">Display/Hide Table</a>
-            </div> #}
-            {# <div class="col col-md-2">
-                <a id="show_hide_all" href="#">Show / Hide All</a>
-            </div> #}
         </div>   
     </div> {# end container #}
 
