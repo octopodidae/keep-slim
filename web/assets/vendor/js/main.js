@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    // Variables
     var my_table = $('#myTable');
     var protocole = 'http://';
     var ip = '127.0.0.1';
@@ -14,59 +15,20 @@ $(document).ready(function() {
     var start = 0; 
     var end = 10;
     var steps = 0;
-
-    rows.slice(start,end).show();
-    rows.slice(start,end).each(function( index ) {
-        steps = $( this ).find(':nth-child(3)').text();
-        var style = 'style="margin-left:' + margin_left + 'px'+ '"';
-        $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style +  '>'+ steps + '</div>').appendTo(graphic_area);
-        animateGraphic(steps, $('#div_' + (index+1)), speed);
-        margin_left+=52;
-    });
-
-    function cleanGraphiArea() {
-        graphic_area.children('.my-div').remove();
-    }
-                     
-    previous.click(function() {
-        start+=10;
-        end+=10;
-        rows.hide();
-        cleanGraphiArea();
-        rows.slice(start,end).show();
-        margin_left = 18;
-        rows.slice(start,end).each(function( index ) {
-            steps = $( this ).find(':nth-child(3)').text();
-            var style = 'style="margin-left:' + margin_left + 'px'+ '"';
-            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style +  '>'+ steps + '</div>').appendTo(graphic_area);
-            animateGraphic(steps, $('#div_' + (index+1)), speed);
-            margin_left+=52;
-        });
-    });
-
-    next.click(function() {
-        start-=10;
-        end-=10;
-        rows.hide();
-        cleanGraphiArea()
-        rows.slice(start,end).show();
-        margin_left = 18;
-        rows.slice(start,end).each(function( index ) {
-            steps = $( this ).find(':nth-child(3)').text();
-            var style = 'style="margin-left:' + margin_left + 'px'+ '"';
-            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style +  '>'+ steps + '</div>').appendTo(graphic_area);
-            animateGraphic(steps, $('#div_' + (index+1)), speed);
-            margin_left+=52;
-        });
-    });
+    var first_row = rows.first();
+    var last_row = rows.last();
 
     // Tablesorter
     my_table.tablesorter();
 
-    // Blinking message into graphic area
-    for ( var i = 0; i < 6; i++ ) {
-        code.fadeToggle('slow');
-    };
+    // Show / Animate last ten rows when page is loaded
+    rows.slice(start,end).show();
+    animateAllGraphics();
+
+    // Clean graphic area
+    function cleanGraphiArea() {
+        graphic_area.children('.my-div').remove();
+    }
 
     // My Animate Graphic Function 
     function animateGraphic (steps, div, speed) {
@@ -106,4 +68,46 @@ $(document).ready(function() {
         });
         $('.my-span').fadeIn(1500);
     }
+
+    // Loop for animate all graphics
+    function animateAllGraphics() {
+        margin_left = 18;
+        rows
+        .slice(start,end)
+        .each(function( index ) {
+            steps = $( this ).find(':nth-child(3)').text();
+            var style = 'style="margin-left:' + margin_left + 'px'+ '"';
+            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style +  '>'+ steps + '</div>').appendTo(graphic_area);
+            animateGraphic(steps, $('#div_' + (index+1)), speed);
+            margin_left+=52;
+        });
+    };
+    
+    // Previous  
+    previous.click(function() {
+         if (last_row.is(':visible')){
+            previous.hasClass('disabled');
+         } else {
+            start+=10;
+            end+=10;
+            rows.hide();
+            cleanGraphiArea();
+            rows.slice(start,end).show();
+            animateAllGraphics();
+        }
+    });
+   
+    // Next
+    next.click(function() {
+         if (first_row.is(':visible')){
+            next.hasClass('disabled');
+         } else {
+            start-=10;
+            end-=10;
+            rows.hide();
+            cleanGraphiArea();
+            rows.slice(start,end).show();
+            animateAllGraphics();
+        }
+    });
 })
