@@ -17,6 +17,9 @@ $(document).ready(function() {
     var steps = 0;
     var first_row = rows.first();
     var last_row = rows.last();
+    var mySlider = $('#mySlider');
+    var settings_btn = $('span.glyphicon-cog'); 
+    var background_slider = $('.background-slider');
 
     // Tablesorter
     my_table.tablesorter();
@@ -109,5 +112,23 @@ $(document).ready(function() {
             rows.slice(start,end).show();
             animateAllGraphics();
         }
+    });
+
+    // Slider
+    mySlider
+        .slider({
+          formatter: function(value) {
+                //console.log(value);
+                return value;
+            }
+        })
+    mySlider
+       .on('slideStop', function() {
+           console.log($(this).slider('getValue'));
+        });
+
+    // Settings
+    settings_btn.click(function() {
+       background_slider.slideToggle('fast');
     });
 })
