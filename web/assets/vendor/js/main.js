@@ -6,7 +6,7 @@ $(document).ready(function() {
     var ip = '127.0.0.1';
     var port = ':8081';
     var graphic_area = $('.graphic-area');
-    var margin_left = 18;
+    var margin_left  = 88;
     var speed = 500;
     var line = $('#line');
     var previous = $('#previous');
@@ -35,7 +35,7 @@ $(document).ready(function() {
         var px = 0;
         div.css( 'height', px );
         px = parseInt(Math.round(steps/100));
-        div.html('<span style="bottom: ' + 13 + 'px; ' + '"' + 'class="my-span" >' + steps + '</span>');
+        div.html('<span style="bottom: ' + 16 + 'px; ' + '"' + 'class="my-span" >' + steps + '</span>');
         if (steps >= 5000 && steps < 10000) {
             div
                 .css('background-color', 'orange')
@@ -71,23 +71,23 @@ $(document).ready(function() {
 
     // Loop for animate all graphics
     function animateAllGraphics() {
-        margin_left = 18;
+        margin_left = 88;
         rows
         .slice(start,end)
         .each(function( index ) {
             steps = $( this ).find(':nth-child(3)').text();
-            var style = 'style="margin-left:' + margin_left + 'px'+ '"';
+            var style = 'style="margin-left:' + margin_left + '%'+ '"';
             $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style +  '>'+ steps + '</div>').appendTo(graphic_area);
             animateGraphic(steps, $('#div_' + (index+1)), speed);
-            margin_left+=52;
+            margin_left-=9.5;
         });
     };
     
     // Previous  
     previous.click(function() {
          if (last_row.is(':visible')){
-            previous.hasClass('disabled');
-         } else {
+
+        } else {
             start+=10;
             end+=10;
             rows.hide();
@@ -100,8 +100,8 @@ $(document).ready(function() {
     // Next
     next.click(function() {
          if (first_row.is(':visible')){
-            next.hasClass('disabled');
-         } else {
+           
+        } else {
             start-=10;
             end-=10;
             rows.hide();
