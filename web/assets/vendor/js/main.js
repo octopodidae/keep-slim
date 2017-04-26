@@ -20,6 +20,7 @@ $(document).ready(function() {
     var mySlider = $('#mySlider');
     var settings_btn = $('span.glyphicon-cog'); 
     var background_slider = $('.background-slider');
+    var btn_refresh = $('#btn_refresh');
 
     // Tablesorter
     my_table.tablesorter();
@@ -130,5 +131,6 @@ $(document).ready(function() {
     // Settings
     settings_btn.click(function() {
        background_slider.slideToggle('fast');
+       btn_refresh.slideToggle('fast');
     });
 })

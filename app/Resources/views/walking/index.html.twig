@@ -75,8 +75,10 @@
             border: 1px solid #e3e3e3;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
             border-radius: 10px;
-            /*margin-left: -15px;*/
-            /*margin-right: -15px;*/
+        }
+        #btn_refresh {
+            display: none;
+            bottom: 10px;
         }
     </style>
 
@@ -132,9 +134,17 @@
                 </div>
                 <br>
                 <div class="row">
-                   {# Slider #}
-                    <div class="background-slider">
-                          <input id="mySlider" data-slider-id="ex1Slider" type="text" data-slider-min="500" data-slider-max="20000" data-slider-step="500" data-slider-value="10000" style="display: none;">
+                    <div class="col col-md-11 background-slider">
+                       {# Slider #}
+                        <div class="">
+                              <input id="mySlider" data-slider-id="ex1Slider" type="text" data-slider-min="500" data-slider-max="20000" data-slider-step="500" data-slider-value="10000" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="col col-md-1" id="btn_refresh">
+                            <br>
+                            <button type="button" class="btn btn-default btn-sm" id="settings">
+                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                            </button>
                     </div>
                 </div>
                 <div class="row">
