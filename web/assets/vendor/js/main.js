@@ -18,7 +18,7 @@ $(document).ready(function() {
     var first_row = rows.first();
     var last_row = rows.last();
     var mySlider = $('#mySlider');
-    var settings_btn = $('span.glyphicon-cog'); 
+    var settings_btn = $('#btn_settings'); 
     var background_slider = $('.background-slider');
     var btn_refresh = $('#btn_refresh');
 
@@ -79,9 +79,11 @@ $(document).ready(function() {
         rows
         .slice(start,end)
         .each(function( index ) {
+            var data_id = $(this).attr('data-id');
             steps = $( this ).find(':nth-child(3)').text();
             var style = 'style="margin-left:' + margin_left + '%'+ '"';
-            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style +  '>'+ steps + '</div>').appendTo(graphic_area);
+            var attr = ' data-id=' + data_id; 
+            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style + attr + '>'+ steps +'</div>').appendTo(graphic_area);
             animateGraphic(steps, $('#div_' + (index+1)), speed);
             margin_left-=9.5;
         });
@@ -90,8 +92,13 @@ $(document).ready(function() {
     // Previous  
     previous.click(function() {
          if (last_row.is(':visible')){
-
+            /*previous.attr('disabled', 'disabled');
+            previous.addClass('disabled');
+            next.removeAttr('disabled');
+            next.removeClass('disabled');
+            next.addClass('active');*/
         } else {
+            /*previous.addClass('active');*/
             start+=10;
             end+=10;
             rows.hide();
@@ -104,7 +111,11 @@ $(document).ready(function() {
     // Next
     next.click(function() {
          if (first_row.is(':visible')){
-           
+           /* next.attr('disabled', 'disabled');
+            next.addClass('disabled');
+            previous.removeAttr('disabled');
+            previous.removeClass('disabled');
+            previous.addClass('active');*/
         } else {
             start-=10;
             end-=10;
@@ -115,12 +126,23 @@ $(document).ready(function() {
         }
     });
 
+    // Transform graphic when mouseenter/mouseover on row
+    rows.mouseenter(function() { 
+        var attr = $(this).attr('data-id');
+        $( '.my-div[data-id=' + attr + ']')
+            .fadeOut('fast')
+            .fadeIn('fast')/*.css('transform', 'skewX(-10deg)')*/;
+    });
+    
+    // rows.mouseleave(function() { 
+    //     $( ".my-div").css('transform', 'skewX(0deg)');
+    // });
+
     // Slider
     mySlider
         .slider({
           formatter: function(value) {
-                //console.log(value);
-                return value;
+               return value;
             }
         })
     mySlider
@@ -133,4 +155,5 @@ $(document).ready(function() {
        background_slider.slideToggle('fast');
        btn_refresh.slideToggle('fast');
     });
+
 })
