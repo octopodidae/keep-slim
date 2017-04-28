@@ -53,9 +53,6 @@
         .rows {
             display: none;
         }
-        /*.glyphicon-cog {
-            color: #337ab7;
-        }*/
         #search_by_date {
             margin-left: 18%;
         }
@@ -80,16 +77,16 @@
             display: none;
             bottom: 10px;
         }
-        
+        div.tooltip.tooltip-main.top{
+            font-size: 10px;
+        }
     </style>
 
 {% endblock %}
 {#end block stylesheets#}
 
-{% block body %}
-    {{ parent() }}
-    <div class="container">
-        <div class="row">
+{% block content %}
+    <div class="row">
             <h1 class="text-left">&nbsp&nbsp Walking list</h1>
             <br>
             <br>
@@ -188,9 +185,7 @@
             <div class="col col-md-2">
                 <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
             </div>
-        </div>   
-    </div> {# end container #}
-
+        </div>
 {% endblock %}
 
 {% block javascripts %}
