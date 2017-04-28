@@ -20,7 +20,7 @@ $(document).ready(function() {
     var mySlider = $('#mySlider');
     var settings_btn = $('#btn_settings'); 
     var background_slider = $('.background-slider');
-    var btn_refresh = $('#btn_refresh');
+    var goal = 10000;
 
     // Tablesorter
     my_table.tablesorter();
@@ -39,37 +39,69 @@ $(document).ready(function() {
         var px = 0;
         div.css( 'height', px );
         px = parseInt(Math.round(steps/100));
+        //console.log(goal);
         div.html('<span style="bottom: ' + 16 + 'px; ' + '"' + 'class="my-span" >' + steps + '</span>');
-        if (steps >= 5000 && steps < 10000) {
-            div
-                .css('background-color', 'orange')
-                .animate({ height: '+=' + px + 'px' }, steps)
-                .children('span').css({
-                    color: 'orange',
-                    'background-color': '#f5f5f5'
-                });
+        if (goal == 10000) {
+            line.css('bottom', '100px');
+            if (steps >= 5000 && steps < 10000) {
+                div
+                    .css('background-color', 'orange')
+                    .animate({ height: '+=' + px + 'px' }, steps)
+                    .children('span').css({
+                        color: 'orange',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+            else if  (steps < 5000 ) {
+                div
+                    .css('background-color', '#FE2E2E')
+                    .animate({ height: '+=' + px + 'px' }, speed)
+                    .children('span').css({
+                        color: '#FE2E2E',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+            else if  (steps >= 10000 ) {
+                div
+                    .css('background-color', 'rgb(109,202,78)')
+                    .animate({  height: '+=' + px + 'px' }, speed)
+                    .children('span').css({
+                        color: 'rgb(109,202,78)',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+
         }
-        else if  (steps < 5000 ) {
-            div
-                .css('background-color', '#FE2E2E')
-                .animate({ height: '+=' + px + 'px' }, speed)
-                .children('span').css({
-                    color: '#FE2E2E',
-                    'background-color': '#f5f5f5'
-                });
+        else if (goal == 20000) {
+            line.css('bottom', '200px');
+            if (steps >= 6666 && steps < 13333) {
+                div
+                    .css('background-color', 'orange')
+                    .animate({ height: '+=' + px + 'px' }, steps)
+                    .children('span').css({
+                        color: 'orange',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+            else if  (steps < 6666 ) {
+                div
+                    .css('background-color', '#FE2E2E')
+                    .animate({ height: '+=' + px + 'px' }, speed)
+                    .children('span').css({
+                        color: '#FE2E2E',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+            else if  (steps >= 13333 ) {
+                div
+                    .css('background-color', 'rgb(109,202,78)')
+                    .animate({  height: '+=' + px + 'px' }, speed)
+                    .children('span').css({
+                        color: 'rgb(109,202,78)',
+                        'background-color': '#f5f5f5'
+                    });
+            }
         }
-        else if  (steps >= 10000 ) {
-            div
-                .css('background-color', 'rgb(109,202,78)')
-                .animate({  height: '+=' + px + 'px' }, speed)
-                .children('span').css({
-                    color: 'rgb(109,202,78)',
-                    'background-color': '#f5f5f5'
-                });
-        }
-        line.fadeToggle( "slow", "linear", function() {
-            line.show();
-        });
         $('.my-span').fadeIn(1500);
     }
 
@@ -87,6 +119,7 @@ $(document).ready(function() {
             animateGraphic(steps, $('#div_' + (index+1)), speed);
             margin_left-=9.5;
         });
+        animateLine(); 
     };
     
     // Previous  
@@ -126,18 +159,14 @@ $(document).ready(function() {
         }
     });
 
-    // Transform graphic when mouseenter/mouseover on row
+    // Transform graphic when mouseenter on row
     rows.mouseenter(function() { 
         var attr = $(this).attr('data-id');
         $( '.my-div[data-id=' + attr + ']')
             .fadeOut('fast')
-            .fadeIn('fast')/*.css('transform', 'skewX(-10deg)')*/;
+            .fadeIn('fast');
     });
     
-    // rows.mouseleave(function() { 
-    //     $( ".my-div").css('transform', 'skewX(0deg)');
-    // });
-
     // Slider
     mySlider
         .slider({
@@ -147,13 +176,20 @@ $(document).ready(function() {
         })
     mySlider
        .on('slideStop', function() {
-           console.log($(this).slider('getValue'));
+           goal = $(this).slider('getValue');
+           cleanGraphiArea();
+           animateAllGraphics();
         });
 
     // Settings
     settings_btn.click(function() {
        background_slider.slideToggle('fast');
-       btn_refresh.slideToggle('fast');
     });
 
+    // Animate line
+    function animateLine() {
+        for (var i=0; i<6; i++) {
+        line.fadeOut('slow').fadeIn('slow');
+        };
+    };
 })
