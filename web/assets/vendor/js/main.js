@@ -74,7 +74,7 @@ $(document).ready(function() {
         }
         else if (goal == 20000) {
             line.css('bottom', '200px');
-            if (steps >= 6666 && steps < 13333) {
+            if (steps >= 10000 && steps < 20000) {
                 div
                     .css('background-color', 'orange')
                     .animate({ height: '+=' + px + 'px' }, steps)
@@ -83,7 +83,7 @@ $(document).ready(function() {
                         'background-color': '#f5f5f5'
                     });
             }
-            else if  (steps < 6666 ) {
+            else if  (steps < 10000 ) {
                 div
                     .css('background-color', '#FE2E2E')
                     .animate({ height: '+=' + px + 'px' }, speed)
@@ -92,7 +92,67 @@ $(document).ready(function() {
                         'background-color': '#f5f5f5'
                     });
             }
-            else if  (steps >= 13333 ) {
+            else if  (steps >= 20000 ) {
+                div
+                    .css('background-color', 'rgb(109,202,78)')
+                    .animate({  height: '+=' + px + 'px' }, speed)
+                    .children('span').css({
+                        color: 'rgb(109,202,78)',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+        }
+        else if (goal == 5000) {
+            line.css('bottom', '50px');
+            if (steps >= 2500 && steps < 5000) {
+                div
+                    .css('background-color', 'orange')
+                    .animate({ height: '+=' + px + 'px' }, steps)
+                    .children('span').css({
+                        color: 'orange',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+            else if  (steps < 2500 ) {
+                div
+                    .css('background-color', '#FE2E2E')
+                    .animate({ height: '+=' + px + 'px' }, speed)
+                    .children('span').css({
+                        color: '#FE2E2E',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+            else if  (steps >= 5000 ) {
+                div
+                    .css('background-color', 'rgb(109,202,78)')
+                    .animate({  height: '+=' + px + 'px' }, speed)
+                    .children('span').css({
+                        color: 'rgb(109,202,78)',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+        }
+        else if (goal == 15000) {
+            line.css('bottom', '150px');
+            if (steps >= 7500 && steps < 15000) {
+                div
+                    .css('background-color', 'orange')
+                    .animate({ height: '+=' + px + 'px' }, steps)
+                    .children('span').css({
+                        color: 'orange',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+            else if  (steps < 7500 ) {
+                div
+                    .css('background-color', '#FE2E2E')
+                    .animate({ height: '+=' + px + 'px' }, speed)
+                    .children('span').css({
+                        color: '#FE2E2E',
+                        'background-color': '#f5f5f5'
+                    });
+            }
+            else if  (steps >= 15000 ) {
                 div
                     .css('background-color', 'rgb(109,202,78)')
                     .animate({  height: '+=' + px + 'px' }, speed)
@@ -188,7 +248,7 @@ $(document).ready(function() {
 
     // Animate line
     function animateLine() {
-        for (var i=0; i<6; i++) {
+        for (var i=0; i<5; i++) {
         line.fadeOut('slow').fadeIn('slow');
         };
     };
