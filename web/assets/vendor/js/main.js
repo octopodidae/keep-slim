@@ -21,6 +21,7 @@ $(document).ready(function() {
     var settings_btn = $('#btn_settings'); 
     var background_slider = $('.background-slider');
     var goal = 10000;
+    var sum_area = $('#sum');
 
     // Tablesorter
     my_table.tablesorter();
@@ -28,7 +29,7 @@ $(document).ready(function() {
     // Show / Animate last ten rows when page is loaded
     rows.slice(start,end).show();
     animateAllGraphics();
-
+    
     // Clean graphic area
     function cleanGraphiArea() {
         graphic_area.children('.my-div').remove();
@@ -179,7 +180,9 @@ $(document).ready(function() {
             animateGraphic(steps, $('#div_' + (index+1)), speed);
             margin_left-=9.5;
         });
-        animateLine(); 
+        sumFct(); 
+        animateLine();
+
     };
     
     // Previous  
@@ -252,4 +255,30 @@ $(document).ready(function() {
         line.fadeOut('slow').fadeIn('slow');
         };
     };
+
+    function sumFct() {
+        var sum_steps = 0;
+        var sum_km = 0;
+        var goalx10 = goal * 10;
+        var percentage = 0;
+        $.each( $('.rows:visible td:nth-child(3)'), function( i, td ){
+            var val = parseInt($(td).html());
+            sum_steps += val;
+        });
+        $.each( $('.rows:visible td:nth-child(2)'), function( i, td ){
+            var val = parseInt($(td).html());
+            sum_km += val;
+        });
+        percentage = (sum_steps / goalx10) * 100;
+        percentage = parseInt(Math.round(percentage)); 
+        console.log(percentage);
+        var msg = sum_steps + ' . ' + sum_km + ' km . ' + percentage + ' % of goal';
+        if (sum_steps >= goalx10) {
+            sum_area.html(msg).css('color', 'rgb(109,202,78)');
+        } else if (sum_steps >= (goalx10/2) || goalx10 < sum_steps) {
+            sum_area.html(msg).css('color', 'orange');
+        } else {
+            sum_area.html(msg).css('color', '#FE2E2E');
+        }
+    }
 })
