@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        .container {
+            max-width: 40%;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>Swiming</h1>
+    <br>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ swiming.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ swiming.date|date("d/m/Y") }}</td>
+            </tr>
+            <tr>
+                <th>Distance</th>
+                <td>{{ swiming.distance }}</td>
+            </tr>
+            {# <tr>
+                <th>Nboftimesperweek</th>
+                <td>{{ swiming.nbOfTimesPerWeek }}</td>
+            </tr> #}
+            <tr>
+                <th>Swimming pool</th>
+                <td>{{ swiming.swimmingPool }}</td>
+            </tr>
+        </tbody>
+    </table>
+     <br>
+        <p><a href="{{ path('swiming_index') }}">Back to the list</a></p>
+    {# <ul>
+        <li>
+            <a href="{{ path('swiming_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('swiming_edit', { 'id': swiming.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul> #}
+{% endblock %}

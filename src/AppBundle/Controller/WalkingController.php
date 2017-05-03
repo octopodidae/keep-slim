@@ -20,7 +20,7 @@ class WalkingController extends Controller
     /**
      * Lists all walking entities.
      *
-     * @Route("/index", name="walking_index")
+     * @Route("/", name="walking_index")
      * @Method("GET")
      */
     public function indexAction()

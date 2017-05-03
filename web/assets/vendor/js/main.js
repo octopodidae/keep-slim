@@ -271,7 +271,6 @@ $(document).ready(function() {
         });
         percentage = (sum_steps / goalx10) * 100;
         percentage = parseInt(Math.round(percentage)); 
-        console.log(percentage);
         var msg = sum_steps + ' . ' + sum_km + ' km . ' + percentage + ' % of goal';
         if (sum_steps >= goalx10) {
             sum_area.html(msg).css('color', 'rgb(109,202,78)');

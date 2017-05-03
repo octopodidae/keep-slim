@@ -88,100 +88,99 @@
 
 {% block content %}
     <div class="row">
-            <h1 class="text-left">&nbsp&nbsp Walking list</h1>
-            <br>
-            <br>
-        </div>
-        <div class="row">
-            <div class="col-md-6"> {# table #}
-                <div id="div_table">
-                    <table class="tablesorter table table-condensed" id="myTable">
-                        <thead>
-                            <tr>
-                                {# <th class="header_cursor" id="th_id">Id</th> #}
-                                <th class="header_cursor">Date</th>
-                                <th class="header_cursor">Distance</th>
-                                <th class="header_cursor">Step</th>
-                                <th class="header_cursor">Comment</th>
-                                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for walking in walkings %}
-                            <tr data-url="{{ path('walking_index', {'id': walking.id}) }}" data-id="{{ walking.id }}" class="rows">
-                                {# <td>{{ walking.id }}</td> #}
-                                <td>{{ walking.date|date("d/m/Y") }}</td>
-                                <td>{{ walking.distance }}</td>
-                                <td>{{ walking.step }}</td>
-                                <td>{{ walking.comment }}</td>
-                                <td>
-                                    <a href="{{ path('walking_show', { 'id': walking.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
-                                    <a href="{{ path('walking_edit', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
-                                    <a href="{{ path('walking_delete', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-trash" role="button"></a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div> 
-            </div> {# end table #}
+        <h1 class="text-left">&nbsp&nbsp Walking list</h1>
+        <br>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-md-6"> {# table #}
+            <div id="div_table">
+                <table class="tablesorter table table-condensed" id="myTable">
+                    <thead>
+                        <tr>
+                            <th class="header_cursor">Date</th>
+                            <th class="header_cursor">Distance</th>
+                            <th class="header_cursor">Step</th>
+                            <th class="header_cursor">Comment</th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for walking in walkings %}
+                        <tr data-url="{{ path('walking_index', {'id': walking.id}) }}" data-id="{{ walking.id }}" class="rows">
+                            {# <td>{{ walking.id }}</td> #}
+                            <td>{{ walking.date|date("d/m/Y") }}</td>
+                            <td>{{ walking.distance }}</td>
+                            <td>{{ walking.step }}</td>
+                            <td>{{ walking.comment }}</td>
+                            <td>
+                                <a href="{{ path('walking_show', { 'id': walking.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
+                                <a href="{{ path('walking_edit', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
+                                <a href="{{ path('walking_delete', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-trash" role="button"></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        </div> {# end table #}
 
-            <div class="col-md-6"> {# graphic area #}
-                <br>
-                <div class="row well text-center" id="sum"></div>
-                <div class="row graphic-area">
-                    <div id="line"></div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col col-md-12 background-slider">
-                       {# Slider #}
-                        <div class="">
-                              <input id="mySlider" data-slider-id="ex1Slider" type="text" data-slider-min="5000" data-slider-max="20000" data-slider-step="5000" data-slider-value="10000" style="display: none;">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col col-md-6">
-                        <nav>
-                          <ul class="pagination pagination-sm">
-                            <li class="page-item disabled" id="first"><a class="page-link" href="#">&larr; First</a></li>
-                            <li class="page-item" id="previous">
-                              <a class="page-link" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span>Previous</span>
-                              </a>
-                            </li>
-                            <li class="page-item" id="next">
-                              <a class="page-link" aria-label="Next">
-                                <span>Next</span>
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                            <li class="page-item disabled" id="last"><a class="page-link" href="#">Last &rarr;</a></li>
-                          </ul>
-                        </nav>
-                    </div>
-                    <div class="col col-md-5">
-                        <br>
-                        <div class="input-group input-group-sm">
-                          <input type="date" class="form-control" id="search_by_date">
-                        </div>
-                    </div>
-                    <div class="col col-md-1">
-                        <br>
-                        <button type="button" class="btn btn-default btn-sm" id="btn_settings">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                </div>
-            </div> {# graphic area #}
-        </div> {# end row #}
-        <div class="row">
-            <div class="col col-md-2">
-                <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
+        <div class="col-md-6"> {# graphic area #}
+            <br>
+            <div class="row well text-center" id="sum"></div>
+            <div class="row graphic-area">
+                <div id="line"></div>
             </div>
+            <br>
+            <div class="row">
+                <div class="col col-md-12 background-slider">
+                   {# Slider #}
+                    <div class="">
+                          <input id="mySlider" data-slider-id="ex1Slider" type="text" data-slider-min="5000" data-slider-max="20000" data-slider-step="5000" data-slider-value="10000" style="display: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6">
+                    <nav>
+                      <ul class="pagination pagination-sm">
+                        <li class="page-item disabled" id="first"><a class="page-link" href="#">&larr; First</a></li>
+                        <li class="page-item" id="previous">
+                          <a class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span>Previous</span>
+                          </a>
+                        </li>
+                        <li class="page-item" id="next">
+                          <a class="page-link" aria-label="Next">
+                            <span>Next</span>
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                        <li class="page-item disabled" id="last"><a class="page-link" href="#">Last &rarr;</a></li>
+                      </ul>
+                    </nav>
+                </div>
+                <div class="col col-md-5">
+                    <br>
+                    <div class="input-group input-group-sm">
+                      <input type="date" class="form-control" id="search_by_date">
+                    </div>
+                </div>
+                <div class="col col-md-1">
+                    <br>
+                    <button type="button" class="btn btn-default btn-sm" id="btn_settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div> {# graphic area #}
+    </div> {# end row #}
+    <div class="row">
+        <div class="col col-md-2">
+            <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
         </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

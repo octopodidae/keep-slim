@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        .rows:hover {
+          background-color: #f5f5f5;
+        }
+        .graphic-area {
+            height:100%;
+            min-height: 300px;
+            background-color: #f5f5f5;
+            position: relative;
+            bottom:0;
+            left:0;
+            border-radius: 4px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <h1 class="text-left">&nbsp&nbsp Swiming list</h1>
+        <br>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-md-6"> {# table #}
+            <div id="div_table">
+                <table class="tablesorter table table-condensed" id="myTable">
+                    <thead>
+                        <tr>
+                            {# <th class="header_cursor" id="th_id">Id</th> #}
+                            <th class="header_cursor">Date</th>
+                            <th class="header_cursor">Distance</th>
+                            <th class="header_cursor">Swiming pool</th>
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for swiming in swimings %}
+                            <tr class="rows">
+                                <td>{{ swiming.date|date("d/m/Y") }}</td>
+                                <td>{{ swiming.distance }}</td>
+                                <td>{{ swiming.swimmingPool }}</td>
+                                <td>
+                                    <a href="{{ path('swiming_show', { 'id': swiming.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
+                                    <a href="{{ path('swiming_edit', { 'id': swiming.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
+                                    <a href="{{ path('swiming_delete', { 'id': swiming.id }) }}" class="btn btn-md glyphicon  glyphicon-trash" role="button"></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div> {# end table #}
+        <div class="col-md-6"> {# graphic area #}
+            <div class="row graphic-area">
+                
+            </div>
+        </div> {# graphic area #}
+    </div> {# end row #}
+    <div class="row">
+        <div class="col col-md-2">
+            <a id="create" href="{{ path('swiming_new') }}">Create a new walking</a>
+        </div>
+    </div>
+{% endblock %}
