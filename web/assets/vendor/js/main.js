@@ -64,10 +64,10 @@ $(document).ready(function() {
             }
             else if  (steps >= 10000 ) {
                 div
-                    .css('background-color', 'rgb(109,202,78)')
+                    .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: 'rgb(109,202,78)',
+                        color: '#AFC440',
                         'background-color': '#f5f5f5'
                     });
             }
@@ -95,10 +95,10 @@ $(document).ready(function() {
             }
             else if  (steps >= 20000 ) {
                 div
-                    .css('background-color', 'rgb(109,202,78)')
+                    .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: 'rgb(109,202,78)',
+                        color: '#AFC440',
                         'background-color': '#f5f5f5'
                     });
             }
@@ -125,10 +125,10 @@ $(document).ready(function() {
             }
             else if  (steps >= 5000 ) {
                 div
-                    .css('background-color', 'rgb(109,202,78)')
+                    .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: 'rgb(109,202,78)',
+                        color: '#AFC440',
                         'background-color': '#f5f5f5'
                     });
             }
@@ -155,10 +155,10 @@ $(document).ready(function() {
             }
             else if  (steps >= 15000 ) {
                 div
-                    .css('background-color', 'rgb(109,202,78)')
+                    .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: 'rgb(109,202,78)',
+                        color: '#AFC440',
                         'background-color': '#f5f5f5'
                     });
             }
@@ -273,7 +273,7 @@ $(document).ready(function() {
         percentage = parseInt(Math.round(percentage)); 
         var msg = sum_steps + ' . ' + sum_km + ' km . ' + percentage + ' % of goal';
         if (sum_steps >= goalx10) {
-            sum_area.html(msg).css('color', 'rgb(109,202,78)');
+            sum_area.html(msg).css('color', '#AFC440');
         } else if (sum_steps >= (goalx10/2) || goalx10 < sum_steps) {
             sum_area.html(msg).css('color', 'orange');
         } else {

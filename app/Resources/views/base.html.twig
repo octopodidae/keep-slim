@@ -10,6 +10,7 @@
             body {
                 background-color: rgb(50,50,50);
                 color: orange;
+                background-image: url({{ asset('/assets/vendor/images/GoYhcga.png') }});
             }
             h1 {
                 color: white;
@@ -21,16 +22,13 @@
                 padding: 1rem;
                 width: 100%;
             }
-            .text-footer {
-                margin-left: 50px;
-            }
         </style>
     </head>
     
     <body>
         <div class="container">{% block content %}{% endblock %}</div>
         <div class="container-fluid">
-            <div class="row">
+            <div class="row text-center">
                 <div id="my_footer">
                     <kbd class="text-footer">Keep Slim</kbd>
                     <br>
