@@ -11,7 +11,6 @@
             margin: 0;
             overflow: hidden;
             background-image: url({{ asset('/assets/vendor/images/GoYhcga.png') }});
-            /*background-repeat: no-repeat;*/
         }
         body {
             color: white;
@@ -20,18 +19,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /*background-color: rgb(50,50,50);*/
         }
         .content {
-            margin: 1px;
-            width: 140px;
-            height: 140px;
+            margin: 10px;
+            width: 180px;
+            height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
             transition: all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
-           /* background-color: rgb(50,50,50);*/
+            border-radius: 10px;
         }
         .material-icons.md-68 { font-size: 68px; }
         .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
@@ -55,9 +53,7 @@
     <div class="wowpanel">
         <div class="content" id="content_bike"><i class="material-icons md-68 md-light md-inactive" id="bike">directions_bike</i></div>
     </div>
-   {#  <div class="wowpanel">
-        <div class="content"><i class="material-icons">wc</i></div>
-    </div> #}
+   
     <script src={{ asset('/assets/vendor/jquery/jquery.min.js') }}></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -104,8 +100,7 @@
                 const ANGLE = 45;
 
                 let wowpanels = document.querySelectorAll(".wowpanel");
-                /*let colors = ['#924DE6', '#EF5252', '#F59500'];*/
-
+                
                 wowpanels.forEach((element) => {
                     floatable(element);
                 });
