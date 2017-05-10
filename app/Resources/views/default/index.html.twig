@@ -32,8 +32,6 @@
             border-radius: 10px;
         }
         .material-icons.md-68 { font-size: 68px; }
-        .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-        .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
         .material-icons.md-light { color: rgba(255, 255, 255, 1); }
         .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
         a{text-decoration: none;color:inherit;}
@@ -41,12 +39,12 @@
 </head>
 <body>
     <div class="wowpanel" >
-        <a href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/walking">
+        <a href="http://127.0.0.1/keep_slim/web/app_dev.php/walking">
             <div class="content" id="content_walk"><i class="material-icons md-68 md-light md-inactive" id="walk">directions_walk</i></div>
         </a>
     </div>
     <div class="wowpanel">
-         <a href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/swiming">
+         <a href="http://127.0.0.1/keep_slim/web/app_dev.php/swiming">
             <div class="content" id="content_pool"><i class="material-icons md-68 md-light md-inactive" id="pool">pool</i></div>
         </a>
     </div>
@@ -76,8 +74,7 @@
                    $(this).css("background-color", "transparent")
                    walk.addClass('md-light md-inactive');
                 })
-
-                content_pool
+            content_pool
                     .mouseenter(function() { 
                             $(this).css("background-color", "#EF5252")
                             pool.removeClass('md-light md-inactive');
@@ -86,8 +83,7 @@
                         $(this).css("background-color", "transparent")
                         pool.addClass('md-light md-inactive');
                     })
-
-                content_bike
+            content_bike
                     .mouseenter(function() { 
                         $(this).css("background-color", "#F59500")
                         bike.removeClass('md-light md-inactive');
@@ -107,8 +103,7 @@
 
                 function floatable (panel) {
                     let content = panel.querySelector(".content");
-                    /*content.style.backgroundColor = color;*/
-                    
+
                     panel.addEventListener('mouseout', e => {
                         content.style.transform = `perspective(300px) 
                                                    rotateY(0deg)

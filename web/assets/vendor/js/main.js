@@ -4,7 +4,7 @@ $(document).ready(function() {
     var my_table = $('#myTable');
     var protocole = 'http://';
     var ip = '127.0.0.1';
-    var port = ':8081';
+    var port = ':80';
     var graphic_area = $('.graphic-area');
     var margin_left  = 88;
     var speed = 500;
@@ -46,19 +46,19 @@ $(document).ready(function() {
             line.css('bottom', '100px');
             if (steps >= 5000 && steps < 10000) {
                 div
-                    .css('background-color', 'orange')
+                    .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
                     .children('span').css({
-                        color: 'orange',
+                        color: '#F59500',
                         'background-color': '#f5f5f5'
                     });
             }
             else if  (steps < 5000 ) {
                 div
-                    .css('background-color', '#FE2E2E')
+                    .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#FE2E2E',
+                        color: '#EF5252',
                         'background-color': '#f5f5f5'
                     });
             }
@@ -77,19 +77,19 @@ $(document).ready(function() {
             line.css('bottom', '200px');
             if (steps >= 10000 && steps < 20000) {
                 div
-                    .css('background-color', 'orange')
+                    .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
                     .children('span').css({
-                        color: 'orange',
+                        color: '#F59500',
                         'background-color': '#f5f5f5'
                     });
             }
             else if  (steps < 10000 ) {
                 div
-                    .css('background-color', '#FE2E2E')
+                    .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#FE2E2E',
+                        color: '#EF5252',
                         'background-color': '#f5f5f5'
                     });
             }
@@ -107,19 +107,19 @@ $(document).ready(function() {
             line.css('bottom', '50px');
             if (steps >= 2500 && steps < 5000) {
                 div
-                    .css('background-color', 'orange')
+                    .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
                     .children('span').css({
-                        color: 'orange',
+                        color: '#F59500',
                         'background-color': '#f5f5f5'
                     });
             }
             else if  (steps < 2500 ) {
                 div
-                    .css('background-color', '#FE2E2E')
+                    .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#FE2E2E',
+                        color: '#EF5252',
                         'background-color': '#f5f5f5'
                     });
             }
@@ -137,19 +137,19 @@ $(document).ready(function() {
             line.css('bottom', '150px');
             if (steps >= 7500 && steps < 15000) {
                 div
-                    .css('background-color', 'orange')
+                    .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
                     .children('span').css({
-                        color: 'orange',
+                        color: '#F59500',
                         'background-color': '#f5f5f5'
                     });
             }
             else if  (steps < 7500 ) {
                 div
-                    .css('background-color', '#FE2E2E')
+                    .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#FE2E2E',
+                        color: '#EF5252',
                         'background-color': '#f5f5f5'
                     });
             }
@@ -273,11 +273,11 @@ $(document).ready(function() {
         percentage = parseInt(Math.round(percentage)); 
         var msg = sum_steps + ' . ' + sum_km + ' km . ' + percentage + ' % of goal';
         if (sum_steps >= goalx10) {
-            sum_area.html(msg).css('color', '#AFC440');
+            sum_area.html(msg).css('background-color', '#AFC440').css('color', 'white');;
         } else if (sum_steps >= (goalx10/2) || goalx10 < sum_steps) {
-            sum_area.html(msg).css('color', 'orange');
+            sum_area.html(msg).css('background-color', '#F59500').css('color', 'white');;
         } else {
-            sum_area.html(msg).css('color', '#FE2E2E');
+            sum_area.html(msg).css('background-color', '#EF5252').css('color', 'white');;
         }
     }
 })

@@ -6,33 +6,35 @@
         }
     </style>
 {% endblock %}
-{% block content %}
+{% block body %}
+    <div class="container">
         <h1>Walking</h1>
         <br>
         <table class="table">
             <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ walking.id }}</td>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <td>{{ walking.date|date("d/m/Y") }}</td>
-                </tr>
-                <tr>
-                    <th>Distance</th>
-                    <td>{{ walking.distance }}</td>
-                </tr>
-                <tr>
-                    <th>Step</th>
-                    <td>{{ walking.step }}</td>
-                </tr>
-                <tr>
-                    <th>Comment</th>
-                    <td>{{ walking.comment }}</td>
-                </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ walking.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ walking.date|date("d/m/Y") }}</td>
+            </tr>
+            <tr>
+                <th>Distance</th>
+                <td>{{ walking.distance }}</td>
+            </tr>
+            <tr>
+                <th>Step</th>
+                <td>{{ walking.step }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ walking.comment }}</td>
+            </tr>
             </tbody>
         </table>
         <br>
         <p><a href="{{ path('walking_index') }}">Back to the list</a></p>
+    </div>
 {% endblock %}
