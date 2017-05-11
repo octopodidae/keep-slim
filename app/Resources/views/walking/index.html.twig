@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
-
 {% block stylesheets %}
+    {{ parent() }}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href={{ asset('assets/vendor/bootstrap/css/bootstrap-slider.min.css') }}>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
     <style>
         th.header_cursor, .page-item {cursor: pointer;}
         .rows:hover {background-color: #f5f5f5;}
@@ -63,25 +62,18 @@
         #sum {padding: 0;font-size: 1.5em;font-weight: bold;}
         #navigation{display: none;}
         .md-48 { font-size: 48px; }
-        #my_footer{padding: 20px;}
         .content{
             width: 80px;
             height: 80px;
             text-align: center;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-            border-radius: 10px;
             margin: 10px;
         }
         #col_nav {top:55px;}
         .nopadding {padding: 1px !important;margin: 1px !important;}
         .material-icons{line-height: 80px;}
-        .material-icons.md-light { color: rgba(255, 255, 255, 1); }
-        .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
         .link{color:white;}
         #toggle {width: 30px;height: 30px;top:185px;}
         #toggle div {
-            /*top: 150px;
-            width: 100%;*/
             height: 5px;
             background: white;
             margin: 4px auto;
@@ -92,20 +84,12 @@
         #toggle.on .one {transform: rotate(45deg) translate(5px, 5px);}
         #toggle.on .two {opacity: 0;}
         #toggle.on .three {transform: rotate(-45deg) translate(7px, -8px);}
-       /* .col{border: 1px solid red;}
-        .row-fluid{border: 10px solid yellow;}*/
     </style>
-
 {% endblock %}{#end block stylesheets#}
-
-{% block body %}
-<div class="container-fluid nopadding">
-
-    <div class="row-fuild">
-       <h1 class="text-center">Walking list</h1>
-       <br><br>
-    </div>
-    <div class="row-fuild" >
+{% block content %}
+    {% block header %}{{ parent() }}{% endblock %}
+<div class="container-fluid nopadding center">
+    <div class="row-fluid align-middle" >
         <div class="col col-md-1 nopadding" id="toggle">
             <div class="one"></div>
             <div class="two"></div>
@@ -115,17 +99,17 @@
             <div id="navigation">
                 <a class="link" href="http://127.0.0.1/keep_slim/web/app_dev.php/index">
                     <div class="content" id="content_home">
-                        <i class="material-icons md-48 md-light md-inactive" id="home">home</i>
+                        <i class="material-icons md-48 md-inactive" id="home">home</i>
                     </div>
                 </a>
                 <a class="link" href="#">
                     <div class="content" id="content_pool">
-                        <i class="material-icons md-48 md-light md-inactive" id="pool">pool</i>
+                        <i class="material-icons md-48 md-inactive" id="pool">pool</i>
                     </div>
                 </a>
                 <a class="link" href="#">
                     <div class="content" id="content_bike">
-                        <i class="material-icons md-48 md-light md-inactive" id="bike">directions_bike</i>
+                        <i class="material-icons md-48 md-inactive" id="bike">directions_bike</i>
                     </div>
                 </a>
             </div>
@@ -162,7 +146,7 @@
             </div>
             <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
         </div> {# end table #}
-        <div class="col col-md-4"> {# graphic area #}
+        <div class="col col-md-offset-1 col-md-4"> {# graphic area #}
             <br>
             <div class="row well text-center" id="sum"></div>
             <div class="row graphic-area">
@@ -212,77 +196,13 @@
                 </div>
             </div>
         </div> {# graphic area #}
-       {# <div class="col col-md-2"></div>#}
-    </div>
-
-   {#<div class="row-fuild">
-       <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
-    </div>#}
-
-   <div class="row-fluid text-center navbar-fixed-bottom" id="my_footer">
-        <kbd class="text-footer">Keep Slim</kbd>
-        <br>
-        <kbd class="text-footer">By Dev For Dev<kbd>
     </div>
 </div>
-{% endblock %}
-
+    {% block footer %} {{ parent() }} {% endblock %}
+{% endblock %} {#end block content#}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript"  src={{ asset('/assets/vendor/js/jquery.tablesorter.min.js') }}></script>
     <script type="text/javascript"  src={{ asset('/assets/vendor/js/bootstrap-slider.min.js') }}></script>
-    <script type="text/javascript"  src={{ asset('/assets/vendor/js/main.js') }}></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var toogle = $("#toggle");
-            var nav = $("#navigation");
-            var home = $("#home");
-            var pool = $("#pool");
-            var bike = $("#bike");
-
-            var content_home = $("#content_home");
-            var content_pool = $("#content_pool");
-            var content_bike = $("#content_bike");
-
-            toogle.click(function() {
-                $(this).toggleClass("on");
-                /*nav.slideToggle();*/
-                nav.animate({width: 'toggle'});
-            });
-
-            content_home
-                .mouseenter(function () {
-                    $(this).css("background-color", "#4975FB")
-                    home.removeClass('md-light md-inactive')
-                    home.addClass("link")
-
-                })
-                .mouseleave(function () {
-                    $(this).css("background-color", "transparent")
-                    home.addClass('md-light md-inactive');
-                })
-
-            content_pool
-                .mouseenter(function () {
-                    $(this).css("background-color", "#EF5252")
-                    pool.removeClass('md-light md-inactive');
-                    pool.addClass("link")
-                })
-                .mouseleave(function () {
-                    $(this).css("background-color", "transparent")
-                    pool.addClass('md-light md-inactive');
-                })
-
-            content_bike
-                .mouseenter(function () {
-                    $(this).css("background-color", "#F59500")
-                    bike.removeClass('md-light md-inactive');
-                    bike.addClass("link")
-                })
-                .mouseleave(function () {
-                    $(this).css("background-color", "transparent")
-                    bike.addClass('md-light md-inactive');
-                })
-        })
-    </script>
+    <script type="text/javascript"  src={{ asset('/assets/vendor/js/walking.js') }}></script>
 {% endblock %}

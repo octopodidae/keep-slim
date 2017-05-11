@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
+    {{ parent() }}
     <style>
         .container {
             max-width: 40%;
         }
     </style>
 {% endblock %}
-{% block body %}
-    <div class="container">
-        <h1>Walking edit</h1>
+{% block content %}
+    {% block header %}{{ parent() }}{% endblock %}
+    <div class="container align-middle">
+        <h3>Walking edit</h3>
         <br>
         {% form_theme edit_form 'bootstrap_3_layout.html.twig'  %}
         {{ form_start(edit_form) }}
@@ -19,4 +21,5 @@
         <br>
         <p><a href="{{ path('walking_index') }}">Back to the list</a></p>
     </div>
+    {% block footer %}{{ parent() }}{% endblock %}
 {% endblock %}

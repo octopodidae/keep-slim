@@ -22,6 +22,14 @@ $(document).ready(function() {
     var background_slider = $('.background-slider');
     var goal = 10000;
     var sum_area = $('#sum');
+    var toogle = $("#toggle");
+    var nav = $("#navigation");
+    var home = $("#home");
+    var pool = $("#pool");
+    var bike = $("#bike");
+    var content_home = $("#content_home");
+    var content_pool = $("#content_pool");
+    var content_bike = $("#content_bike");
 
     // Tablesorter
     my_table.tablesorter();
@@ -280,4 +288,44 @@ $(document).ready(function() {
             sum_area.html(msg).css('background-color', '#EF5252').css('color', 'white');;
         }
     }
+
+    toogle.click(function() {
+        $(this).toggleClass("on");
+        /*nav.slideToggle();*/
+        nav.animate({width: 'toggle'});
+    });
+
+    content_home
+        .mouseenter(function () {
+            $(this).css("background-color", "#4975FB")
+            home.removeClass('md-light md-inactive')
+            home.addClass("link")
+
+        })
+        .mouseleave(function () {
+            $(this).css("background-color", "transparent")
+            home.addClass('md-light md-inactive');
+        })
+
+    content_pool
+        .mouseenter(function () {
+            $(this).css("background-color", "#EF5252")
+            pool.removeClass('md-light md-inactive');
+            pool.addClass("link")
+        })
+        .mouseleave(function () {
+            $(this).css("background-color", "transparent")
+            pool.addClass('md-light md-inactive');
+        })
+
+    content_bike
+        .mouseenter(function () {
+            $(this).css("background-color", "#F59500")
+            bike.removeClass('md-light md-inactive');
+            bike.addClass("link")
+        })
+        .mouseleave(function () {
+            $(this).css("background-color", "transparent")
+            bike.addClass('md-light md-inactive');
+        })
 })
