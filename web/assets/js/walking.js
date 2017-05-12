@@ -1,6 +1,10 @@
+/**
+ * Created by Bertrand on 04/2017.
+ */
+
 $(document).ready(function() {
 
-    // Variables
+    // Variables //
     var my_table = $('#myTable');
     var protocole = 'http://';
     var ip = '127.0.0.1';
@@ -14,7 +18,8 @@ $(document).ready(function() {
     var rows = $('.rows');
     var start = 0; 
     var end = 10;
-    var steps = 0;
+    var steps ;
+    var km;
     var first_row = rows.first();
     var last_row = rows.last();
     var mySlider = $('#mySlider');
@@ -32,32 +37,33 @@ $(document).ready(function() {
     var content_bike = $("#content_bike");
     var originColor = '';
 
-    // Tablesorter
+    // Tablesorter //
     my_table.tablesorter();
 
-    // Show / Animate last ten rows when page is loaded
+    // Show / Animate last ten rows when page is loaded //
     rows.slice(start,end).show();
     animateAllGraphics();
     
-    // Clean graphic area
+    // Clean graphic area //
     function cleanGraphiArea() {
         graphic_area.children('.my-div').remove();
     }
 
-    // My Animate Graphic Function 
-    function animateGraphic (steps, div, speed) {
+    // My Animate Graphic Function //
+    function animateGraphic (steps, div, speed, km) {
         var px = 0;
         div.css( 'height', px );
         px = parseInt(Math.round(steps/100));
-        //console.log(goal);
-        div.html('<span style="bottom: ' + 16 + 'px; ' + '"' + 'class="my-span" >' + steps + '</span>');
+       /* km = parseInt(km);
+        km = km.toFixed(1);*/
+        div.html('<span class="span-steps" >' + steps + '</span>');
         if (goal == 10000) {
             line.css('bottom', '100px');
             if (steps >= 5000 && steps < 10000) {
                 div
                     .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#F59500'
                     });
             }
@@ -65,7 +71,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#EF5252'
                     });
             }
@@ -73,7 +79,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#AFC440'
                     });
             }
@@ -85,7 +91,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#F59500'
                     });
             }
@@ -93,7 +99,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#EF5252'
                     });
             }
@@ -101,7 +107,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#AFC440'
                     });
             }
@@ -112,7 +118,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#F59500'
                     });
             }
@@ -120,7 +126,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#EF5252'
                     });
             }
@@ -128,7 +134,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#AFC440'
                     });
             }
@@ -139,7 +145,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#F59500'
                     });
             }
@@ -147,7 +153,7 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#EF5252'
                     });
             }
@@ -155,15 +161,15 @@ $(document).ready(function() {
                 div
                     .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
-                    .children('span').css({
+                    .children('.span-steps').css({
                         color: '#AFC440'
                     });
             }
         }
-        $('.my-span').fadeIn(1500);
+        $('.span-steps').fadeIn(1500);
     }
 
-    // Loop for animate all graphics
+    // Loop for animate all graphics //
     function animateAllGraphics() {
         margin_left = 88;
         rows
@@ -171,10 +177,14 @@ $(document).ready(function() {
         .each(function( index ) {
             var data_id = $(this).attr('data-id');
             steps = $( this ).find(':nth-child(3)').text();
+            km = $( this ).find(':nth-child(2)').text();
+            /*console.log(steps);
+            console.log(typeof(steps));*/
             var style = 'style="margin-left:' + margin_left + '%'+ '"';
             var attr = ' data-id=' + data_id; 
-            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style + attr + '>'+ steps +'</div>').appendTo(graphic_area);
-            animateGraphic(steps, $('#div_' + (index+1)), speed);
+            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style + attr + '>'+ steps +'</div>' +
+            '<span class="span-km" ' +  style + '>' + km + 'km</span>').appendTo(graphic_area);
+            animateGraphic(steps, $('#div_' + (index+1)), speed, km);
             margin_left-=9.5;
         });
         sumFct(); 
@@ -182,7 +192,7 @@ $(document).ready(function() {
 
     };
     
-    // Previous  
+    // Previous //
     previous.click(function() {
          if (last_row.is(':visible')){
             /*previous.attr('disabled', 'disabled');
@@ -201,7 +211,7 @@ $(document).ready(function() {
         }
     });
    
-    // Next
+    // Next //
     next.click(function() {
          if (first_row.is(':visible')){
            /* next.attr('disabled', 'disabled');
@@ -219,22 +229,22 @@ $(document).ready(function() {
         }
     });
 
-    // Transform graphic when over on row
+    // Transform graphic when over on row //
     rows.hover(
         function() {
             //mouse over
             var attr = $(this).attr('data-id');
             originColor = $('.my-div[data-id=' + attr + ']').css('background-color');
             $('.my-div[data-id=' + attr + ']').css('background', 'aqua');
-            $('.my-div[data-id=' + attr + ']').find('span').css('color', 'aqua');
+            $('.my-div[data-id=' + attr + ']').find('.span-steps').css('color', 'aqua');
 
         }, function() {
             var attr = $(this).attr('data-id');
             $('.my-div[data-id=' + attr + ']').css('background', originColor);
-            $('.my-div[data-id=' + attr + ']').find('span').css('color', originColor);
+            $('.my-div[data-id=' + attr + ']').find('.span-steps').css('color', originColor);
         });
 
-    // Slider
+    // Slider //
     mySlider
         .slider({
           formatter: function(value) {
@@ -248,18 +258,19 @@ $(document).ready(function() {
            animateAllGraphics();
         });
 
-    // Settings
+    // Settings //
     settings_btn.click(function() {
        background_slider.slideToggle('fast');
     });
 
-    // Animate line
+    // Animate line //
     function animateLine() {
         for (var i=0; i<5; i++) {
         line.fadeOut('slow').fadeIn('slow');
         };
     };
 
+    // Sum //
     function sumFct() {
         var sum_steps = 0;
         var sum_km = 0;
@@ -275,7 +286,7 @@ $(document).ready(function() {
         });
         percentage = (sum_steps / goalx10) * 100;
         percentage = parseInt(Math.round(percentage)); 
-        var msg = sum_steps + ' . ' + sum_km + ' km . ' + percentage + ' % of goal';
+        var msg = sum_steps + ' . ' + sum_km + 'km . ' + percentage + '% of goal';
         if (sum_steps >= goalx10) {
             sum_area.html(msg).css('background-color', '#AFC440').css('color', 'white');;
         } else if (sum_steps >= (goalx10/2) || goalx10 < sum_steps) {
@@ -285,6 +296,7 @@ $(document).ready(function() {
         }
     }
 
+    // Vertical Navigation //
     toogle.click(function() {
         $(this).toggleClass("on");
         /*nav.slideToggle();*/

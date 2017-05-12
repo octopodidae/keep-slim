@@ -55,35 +55,4 @@ $(document).ready(function() {
                 .css("transform", "rotate(0deg)")
             bike.addClass('md-inactive');
         })
-
-/*
-    const ANGLE = 45;
-
-    let wowpanels = document.querySelectorAll(".wowpanel");
-
-    wowpanels.forEach((element) => {
-        floatable(element);
-});
-
-    function floatable (panel) {
-        let content = panel.querySelector(".content");
-
-        panel.addEventListener('mouseout', e => {
-            content.style.transform = `perspective(300px)
-                                               rotateY(0deg)
-                                               rotateX(0deg)`;
-    });
-
-        panel.addEventListener('mousemove', e => {
-            let w = panel.clientWidth;
-        let h = panel.clientHeight;
-        let y = (e.offsetX - w * 0.5) / w * ANGLE;
-        let x = (1 - (e.offsetY - h * 0.5)) / h * ANGLE;
-
-        content.style.transform = `perspective(300px)
-                                               rotateX(${x}deg)
-                                               rotateY(${y}deg)`;
-    });
-    }
-*/
 });

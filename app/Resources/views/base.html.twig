@@ -13,18 +13,29 @@
                     background-image: url({{ asset('/assets/images/background.png') }});
                     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
                 }
-                .align-middle {
-                    margin-top: 10%;
-                    margin-bottom: 15%;
+                /*@font-face {
+                    font-family: 'myFontTitle';
+                    src: url({{ asset('assets/fonts/komikask-webfont.woff2') }}) format('woff2'),
+                    url({{ asset('assets/fonts/komikask-webfont.woff') }}) format('woff');
+                    font-weight: normal;
+                    font-style: normal;
+                }*/
+                @font-face {
+                    font-family: 'myFontTitle';
+                    src: url({{ asset('assets/fonts/sf_sports_night-webfont.woff2') }}) format('woff2'),
+                    url({{ asset('assets/fonts/sf_sports_night-webfont.woff') }}) format('woff');
+                    font-weight: normal;
+                    font-style: normal;
                 }
-                #footer{padding: 20px; height: 10%; background-image: url({{ asset('/assets/images/footer-header.jpg') }});}
-                #header{padding: 20px; height: 10%; background-image: url({{ asset('/assets/images/footer-header.jpg') }});}
-                h1, h3 {color: white;font-family: Menlo,Monaco,Consolas,"Courier New",monospace;}
+                h1 {font-family:myFontTitle;color: white;font-size: 60px;}
+                .align-middle {margin-top: 10%; margin-bottom: 15%;}
+                #footer{padding: 20px; height: 10%; background-image: url({{ asset('assets/images/footer-header.jpg') }});}
+                #header{height: 10%; background-image: url({{ asset('assets/images/footer-header.jpg') }});}
                 a {color: #4975FB;}
-                a:hover{color:aqua;}
+                a:hover{color:#924DE6;}
                 a:hover, a:visited, a:link, a:active{text-decoration: none; }
                 .pagination>li>a {color: #4975FB;}
-                .glyphicon:hover{text-decoration: none;color:aqua;}
+                .glyphicon:hover{text-decoration: none;color:#924DE6;}
                 .material-icons.md-inactive { color: rgba(255, 255, 255, 0.3); }
                 .content{
                     box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
@@ -48,6 +59,6 @@
             </div>
         {% endblock %}
     {% endblock %}
-    {% block javascripts %} <script src={{ asset('/assets/vendor/jquery/jquery.min.js') }}></script>{% endblock %}
+    {% block javascripts %} <script src={{ asset('assets/vendor/jquery/jquery.min.js') }}></script>{% endblock %}
     </body>
 </html>
