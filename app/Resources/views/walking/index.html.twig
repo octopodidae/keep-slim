@@ -4,16 +4,39 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href={{ asset('assets/vendor/bootstrap/css/bootstrap-slider.min.css') }}>
     <style>
+        .paper {
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+            background: -webkit-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+            background: -moz-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+            background: -ms-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+            background: -o-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+            background: linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+            -webkit-background-size: 100% 20px;
+            -moz-background-size: 100% 20px;
+            -ms-background-size: 100% 20px;
+            -o-background-size: 100% 20px;
+            background-size: 100% 20px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+        }
         th.header_cursor, .page-item {cursor: pointer;}
         .rows:hover {background-color: #f5f5f5;}
         .graphic-area {
             height:100%;
             min-height: 300px;
-            background-color: #f5f5f5;
+            /*background-color: #f5f5f5;*/
+           /* background-image: url({{ asset('assets/images/graphic/backgroundGraphic.jpg') }}); */
             position: relative;
             bottom:0;
             left:0;
             border-radius: 4px;
+        }
+        .green-active {
+            background-color: #54ff00;
         }
         #ex1Slider .slider-selection {background: #BABABA;}
         .my-div {
@@ -25,13 +48,12 @@
             font-size: 0.8em;
             font-weight: bold;
         }
-        .my-span {position: relative;display: none;
-        }
+        .my-span {position: relative;display: none;background-color: #fff;}
         #line {
             position: absolute;
             bottom: 100px;
             display: none;
-            height: 1px;
+            height: 2px;
             width: 100%;
             background-color: #AFC440;
         }
@@ -61,16 +83,16 @@
         div.tooltip.tooltip-main.top{font-size: 10px;}
         #sum {padding: 0;font-size: 1.5em;font-weight: bold;}
         #navigation{display: none;}
-        .md-48 { font-size: 48px; }
+        .md-40 { font-size: 40px; }
         .content{
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             text-align: center;
             margin: 10px;
         }
         #col_nav {top:55px;}
         .nopadding {padding: 1px !important;margin: 1px !important;}
-        .material-icons{line-height: 80px;}
+        .material-icons{line-height: 70px;}
         .link{color:white;}
         #toggle {width: 30px;height: 30px;top:185px;}
         #toggle div {
@@ -99,17 +121,17 @@
             <div id="navigation">
                 <a class="link" href="http://127.0.0.1/keep_slim/web/app_dev.php/index">
                     <div class="content" id="content_home">
-                        <i class="material-icons md-48 md-inactive" id="home">home</i>
+                        <i class="material-icons md-40 md-inactive" id="home">home</i>
                     </div>
                 </a>
                 <a class="link" href="#">
                     <div class="content" id="content_pool">
-                        <i class="material-icons md-48 md-inactive" id="pool">pool</i>
+                        <i class="material-icons md-40 md-inactive" id="pool">pool</i>
                     </div>
                 </a>
                 <a class="link" href="#">
                     <div class="content" id="content_bike">
-                        <i class="material-icons md-48 md-inactive" id="bike">directions_bike</i>
+                        <i class="material-icons md-40 md-inactive" id="bike">directions_bike</i>
                     </div>
                 </a>
             </div>
@@ -149,7 +171,7 @@
         <div class="col col-md-offset-1 col-md-4"> {# graphic area #}
             <br>
             <div class="row well text-center" id="sum"></div>
-            <div class="row graphic-area">
+            <div class="row graphic-area paper">
                 <div id="line"></div>
             </div>
             <br>
@@ -204,5 +226,5 @@
     {{ parent() }}
     <script type="text/javascript"  src={{ asset('/assets/vendor/js/jquery.tablesorter.min.js') }}></script>
     <script type="text/javascript"  src={{ asset('/assets/vendor/js/bootstrap-slider.min.js') }}></script>
-    <script type="text/javascript"  src={{ asset('/assets/vendor/js/walking.js') }}></script>
+    <script type="text/javascript"  src={{ asset('/assets/js/walking.js') }}></script>
 {% endblock %}

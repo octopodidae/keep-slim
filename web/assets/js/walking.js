@@ -30,6 +30,7 @@ $(document).ready(function() {
     var content_home = $("#content_home");
     var content_pool = $("#content_pool");
     var content_bike = $("#content_bike");
+    var originColor = '';
 
     // Tablesorter
     my_table.tablesorter();
@@ -57,8 +58,7 @@ $(document).ready(function() {
                     .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
                     .children('span').css({
-                        color: '#F59500',
-                        'background-color': '#f5f5f5'
+                        color: '#F59500'
                     });
             }
             else if  (steps < 5000 ) {
@@ -66,8 +66,7 @@ $(document).ready(function() {
                     .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#EF5252',
-                        'background-color': '#f5f5f5'
+                        color: '#EF5252'
                     });
             }
             else if  (steps >= 10000 ) {
@@ -75,8 +74,7 @@ $(document).ready(function() {
                     .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#AFC440',
-                        'background-color': '#f5f5f5'
+                        color: '#AFC440'
                     });
             }
 
@@ -88,8 +86,7 @@ $(document).ready(function() {
                     .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
                     .children('span').css({
-                        color: '#F59500',
-                        'background-color': '#f5f5f5'
+                        color: '#F59500'
                     });
             }
             else if  (steps < 10000 ) {
@@ -97,8 +94,7 @@ $(document).ready(function() {
                     .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#EF5252',
-                        'background-color': '#f5f5f5'
+                        color: '#EF5252'
                     });
             }
             else if  (steps >= 20000 ) {
@@ -106,8 +102,7 @@ $(document).ready(function() {
                     .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#AFC440',
-                        'background-color': '#f5f5f5'
+                        color: '#AFC440'
                     });
             }
         }
@@ -118,8 +113,7 @@ $(document).ready(function() {
                     .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
                     .children('span').css({
-                        color: '#F59500',
-                        'background-color': '#f5f5f5'
+                        color: '#F59500'
                     });
             }
             else if  (steps < 2500 ) {
@@ -127,8 +121,7 @@ $(document).ready(function() {
                     .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#EF5252',
-                        'background-color': '#f5f5f5'
+                        color: '#EF5252'
                     });
             }
             else if  (steps >= 5000 ) {
@@ -136,8 +129,7 @@ $(document).ready(function() {
                     .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#AFC440',
-                        'background-color': '#f5f5f5'
+                        color: '#AFC440'
                     });
             }
         }
@@ -148,8 +140,7 @@ $(document).ready(function() {
                     .css('background-color', '#F59500')
                     .animate({ height: '+=' + px + 'px' }, steps)
                     .children('span').css({
-                        color: '#F59500',
-                        'background-color': '#f5f5f5'
+                        color: '#F59500'
                     });
             }
             else if  (steps < 7500 ) {
@@ -157,8 +148,7 @@ $(document).ready(function() {
                     .css('background-color', '#EF5252')
                     .animate({ height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#EF5252',
-                        'background-color': '#f5f5f5'
+                        color: '#EF5252'
                     });
             }
             else if  (steps >= 15000 ) {
@@ -166,8 +156,7 @@ $(document).ready(function() {
                     .css('background-color', '#AFC440')
                     .animate({  height: '+=' + px + 'px' }, speed)
                     .children('span').css({
-                        color: '#AFC440',
-                        'background-color': '#f5f5f5'
+                        color: '#AFC440'
                     });
             }
         }
@@ -230,14 +219,21 @@ $(document).ready(function() {
         }
     });
 
-    // Transform graphic when mouseenter on row
-    rows.mouseenter(function() { 
-        var attr = $(this).attr('data-id');
-        $( '.my-div[data-id=' + attr + ']')
-            .fadeOut('fast')
-            .fadeIn('fast');
-    });
-    
+    // Transform graphic when over on row
+    rows.hover(
+        function() {
+            //mouse over
+            var attr = $(this).attr('data-id');
+            originColor = $('.my-div[data-id=' + attr + ']').css('background-color');
+            $('.my-div[data-id=' + attr + ']').css('background', 'aqua');
+            $('.my-div[data-id=' + attr + ']').find('span').css('color', 'aqua');
+
+        }, function() {
+            var attr = $(this).attr('data-id');
+            $('.my-div[data-id=' + attr + ']').css('background', originColor);
+            $('.my-div[data-id=' + attr + ']').find('span').css('color', originColor);
+        });
+
     // Slider
     mySlider
         .slider({
