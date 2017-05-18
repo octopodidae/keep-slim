@@ -14,45 +14,45 @@ $(document).ready(function() {
         .mouseenter(function() {
             $(this)
                 .css("background-color", "#924DE6")
-                /*.css("transform", "scale(1.3)")*/
-                .css("transform", "rotate(360deg)")
+                .css("transform", "scale(1.3)")
+               /* .css("transform", "rotate(360deg)")*/
             walk.removeClass('md-inactive')
         })
         .mouseleave(function() {
             $(this)
                 .css("background-color", "transparent")
-                /*.css("transform", "scale(1)")*/
-                .css("transform", "rotate(0deg)")
+                .css("transform", "scale(1)")
+                /*.css("transform", "rotate(0deg)")*/
             walk.addClass('md-inactive');
         })
     content_pool
         .mouseenter(function() {
             $(this)
                 .css("background-color", "#EF5252")
-                /*.css("transform", "scale(1.3)")*/
-                .css("transform", "rotate(360deg)")
+                .css("transform", "scale(1.3)")
+                /*.css("transform", "rotate(360deg)")*/
             pool.removeClass('md-inactive');
         })
         .mouseleave(function() {
             $(this)
                 .css("background-color", "transparent")
-                /*.css("transform", "scale(1)")*/
-                .css("transform", "rotate(0deg)")
+                .css("transform", "scale(1)")
+                /*.css("transform", "rotate(0deg)")*/
             pool.addClass('md-inactive');
         })
     content_bike
         .mouseenter(function() {
             $(this)
                 .css("background-color", "#F59500")
-                /*.css("transform", "scale(1.3)")*/
-                .css("transform", "rotate(360deg)")
+                .css("transform", "scale(1.3)")
+                /*.css("transform", "rotate(360deg)")*/
             bike.removeClass('md-inactive');
         })
         .mouseleave(function() {
             $(this)
                 .css("background-color", "transparent")
-                /*.css("transform", "scale(1)")*/
-                .css("transform", "rotate(0deg)")
+                .css("transform", "scale(1)")
+                /*.css("transform", "rotate(0deg)")*/
             bike.addClass('md-inactive');
         })
 });

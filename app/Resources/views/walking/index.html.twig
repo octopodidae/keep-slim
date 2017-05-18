@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - Walking{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href={{ asset('assets/vendor/bootstrap/css/bootstrap-slider.min.css') }}>
@@ -36,15 +37,15 @@
         #ex1Slider .slider-selection {background: #BABABA;}
         .my-div {
             position: absolute;
-            width: 50px;
+            width: 58px;
             bottom:0;
             max-height: 280px;
             color: black;
-            font-size: 0.8em;
+            font-size: 0.9em;
             font-weight: bold;
         }
         .span-steps {position: relative;bottom: 18px;display:inline-block; background-color: #fff;}
-        .span-km{position: absolute;bottom:0px;color:white;display:inline-block;font-size: 0.8em;font-weight: bold;text-align: center;left: 5px;}
+        .span-km{position: absolute;bottom:0px;color:white;display:inline-block;font-size: 0.9em;font-weight: bold;text-align: center;left: 8px;font-weight: bold;}
         #line {
             position: absolute;
             bottom: 100px;
@@ -115,7 +116,7 @@
         </div>
         <div class="col col-md-1 nopadding" id="col_nav">
             <div id="navigation">
-                <a class="link" href="http://127.0.0.1/keep_slim/web/app_dev.php/index">
+                <a class="link" href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/index">
                     <div class="content" id="content_home">
                         <i class="material-icons md-40 md-inactive" id="home">home</i>
                     </div>
@@ -132,7 +133,7 @@
                 </a>
             </div>
         </div>
-        <div class="col col-md-4"> {# table #}
+        <div class="col col-md-3"> {# table #}
             <div id="div_table">
                 <table class="tablesorter table table-condensed" id="myTable">
                     <thead>
@@ -140,8 +141,8 @@
                             <th class="header_cursor">Date</th>
                             <th class="header_cursor">Distance</th>
                             <th class="header_cursor">Step</th>
-                            <th class="header_cursor">Comment</th>
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
+                           {#  <th class="header_cursor">Comment</th> #}
+                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -151,7 +152,7 @@
                             <td>{{ walking.date|date("d/m/Y") }}</td>
                             <td>{{ walking.distance }}</td>
                             <td>{{ walking.step }}</td>
-                            <td>{{ walking.comment }}</td>
+                            {# <td>{{ walking.comment }}</td> #}
                             <td>
                                 <a href="{{ path('walking_show', { 'id': walking.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
                                 <a href="{{ path('walking_edit', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
@@ -164,7 +165,7 @@
             </div>
             <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
         </div> {# end table #}
-        <div class="col col-md-offset-1 col-md-4"> {# graphic area #}
+        <div class="col col-md-offset-1 col-md-5"> {# graphic area #}
             <br>
             <div class="row well text-center" id="sum"></div>
             <div class="row graphic-area paper">
@@ -216,6 +217,18 @@
         </div> {# graphic area #}
     </div>
 </div>
+
+{# <div>
+   
+    {% for w in walkings %}
+          <span class="{% if loop.index is even %}pair{% else %}impair{% endif %}">
+    {{ w.distance }}
+  </span>
+    {% endfor %}
+    
+</div> #}
+
+
     {% block footer %} {{ parent() }} {% endblock %}
 {% endblock %} {#end block content#}
 {% block javascripts %}

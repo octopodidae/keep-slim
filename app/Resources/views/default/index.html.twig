@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - Home{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <style>
@@ -30,12 +31,12 @@
 {% block content %}
     {% block header %} {{ parent() }}{% endblock %}
     <div class="wowpanel" >
-        <a href="http://127.0.0.1/keep_slim/web/app_dev.php/walking">
+        <a href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/walking">
             <div class="content" id="content_walk"><i class="material-icons md-80 md-inactive" id="walk">directions_walk</i></div>
         </a>
     </div>
     <div class="wowpanel">
-         <a href="http://127.0.0.1/keep_slim/web/app_dev.php/swiming">
+         <a href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/swiming">
             <div class="content" id="content_pool"><i class="material-icons md-80 md-inactive" id="pool">pool</i></div>
         </a>
     </div>
@@ -48,7 +49,7 @@
 {% endblock %}{#end block content#}
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript"  src={{ asset('/assets/js/index.js') }}></script>
+    <script type="text/javascript"  src={{ asset('assets/js/index.js') }}></script>
 {% endblock %} {#end block javascripts#}
 
 

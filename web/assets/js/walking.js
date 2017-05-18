@@ -8,7 +8,7 @@ $(document).ready(function() {
     var my_table = $('#myTable');
     var protocole = 'http://';
     var ip = '127.0.0.1';
-    var port = ':80';
+    var port = ':8081';
     var graphic_area = $('.graphic-area');
     var margin_left  = 88;
     var speed = 500;
@@ -54,8 +54,6 @@ $(document).ready(function() {
         var px = 0;
         div.css( 'height', px );
         px = parseInt(Math.round(steps/100));
-       /* km = parseInt(km);
-        km = km.toFixed(1);*/
         div.html('<span class="span-steps" >' + steps + '</span>');
         if (goal == 10000) {
             line.css('bottom', '100px');
@@ -178,8 +176,7 @@ $(document).ready(function() {
             var data_id = $(this).attr('data-id');
             steps = $( this ).find(':nth-child(3)').text();
             km = $( this ).find(':nth-child(2)').text();
-            /*console.log(steps);
-            console.log(typeof(steps));*/
+            km = parseFloat(km);
             var style = 'style="margin-left:' + margin_left + '%'+ '"';
             var attr = ' data-id=' + data_id; 
             $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style + attr + '>'+ steps +'</div>' +
@@ -281,12 +278,15 @@ $(document).ready(function() {
             sum_steps += val;
         });
         $.each( $('.rows:visible td:nth-child(2)'), function( i, td ){
-            var val = parseInt($(td).html());
+            var val = parseFloat($(td).html());
             sum_km += val;
         });
         percentage = (sum_steps / goalx10) * 100;
         percentage = parseInt(Math.round(percentage)); 
-        var msg = sum_steps + ' . ' + sum_km + 'km . ' + percentage + '% of goal';
+        sum_steps_txt = sum_steps.toLocaleString();
+        sum_km = sum_km.toFixed(1);
+        var msg = sum_steps_txt + ' steps | ' + sum_km + 'km | ' + percentage + '% of goal';
+        km = parseFloat(km);
         if (sum_steps >= goalx10) {
             sum_area.html(msg).css('background-color', '#AFC440').css('color', 'white');;
         } else if (sum_steps >= (goalx10/2) || goalx10 < sum_steps) {
