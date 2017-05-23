@@ -8,7 +8,7 @@
             margin: 0;
             overflow: hidden;
         }
-        body {
+        .menu {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -19,32 +19,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-            transition: all 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+            box-shadow: 0px 0px 10px rgba(255,255,255,0.3);
         }
         .material-icons.md-80 { font-size: 80px; }
         a{color:white;}
         a:hover{color:white;}
         .wowpanel{margin: 30px;}
+        .align-middle {margin-top: 10%; margin-bottom: 10%;}
     </style>
 {% endblock %}{#end block stylesheets#}
 {% block content %}
-    {% block header %} {{ parent() }}{% endblock %}
-    <div class="wowpanel" >
-        <a href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/walking">
-            <div class="content" id="content_walk"><i class="material-icons md-80 md-inactive" id="walk">directions_walk</i></div>
-        </a>
-    </div>
-    <div class="wowpanel">
-         <a href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/swiming">
-            <div class="content" id="content_pool"><i class="material-icons md-80 md-inactive" id="pool">pool</i></div>
-        </a>
-    </div>
-    <div class="wowpanel">
-        <a href="#">
-            <div class="content" id="content_bike"><i class="material-icons md-80 md-inactive" id="bike">directions_bike</i></div>
-        </a>
-    </div>
+    
+    <div class="container-fluid">{% block header %} {{ parent() }}{% endblock %}</div>
+        <div class="menu">   
+            <div class="wowpanel align-middle" >
+            <a href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/walking">
+                <div class="content" id="content_walk"><i class="material-icons md-80 md-inactive" id="walk">directions_walk</i></div>
+            </a>
+            </div>
+            <div class="wowpanel align-middle">
+                 <a href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/swiming">
+                    <div class="content" id="content_pool"><i class="material-icons md-80 md-inactive" id="pool">pool</i></div>
+                </a>
+            </div>
+            <div class="wowpanel align-middle">
+                <a href="#">
+                    <div class="content" id="content_bike"><i class="material-icons md-80 md-inactive" id="bike">directions_bike</i></div>
+                </a>
+            </div>
+        </div>
     {% block footer %}{{ parent() }}{% endblock %}
 {% endblock %}{#end block content#}
 {% block javascripts %}

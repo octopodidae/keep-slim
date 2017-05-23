@@ -6,64 +6,165 @@
           background-color: #f5f5f5;
         }
         .graphic-area {
-            height:100%;
+           /* height:100%;*/
             min-height: 300px;
             box-shadow: 10px 10px 5px #888888;
-            position: relative;
-            bottom:0;
-            left:0;
-            border-radius: 4px;
-            background-color: white;
+            border-radius: 50%;
+            background-color: rgb(255,255,255);
+            text-align: center;
         }
+        #myTable > thead > tr > th,
+        #myTable > tbody > tr > th,
+        #myTable > tfoot > tr > th,
+        #myTable > thead > tr > td,
+        #myTable > tbody > tr > td,
+        #myTable > tfoot > tr > td {
+          padding: 1px;
+        }
+        #navigation{display: none;}
+        .md-40 { font-size: 40px; }
+        .content{
+            width: 70px;
+            height: 70px;
+            text-align: center;
+            margin: 10px;
+            box-shadow: 0px 0px 10px rgba(255,255,255,0.3);
+        }
+        #col_nav {top:55px;}
+        .nopadding {padding: 1px !important;margin: 1px !important;}
+        .material-icons{line-height: 70px;}
+        .link{color:white;}
+        #toggle {width: 30px;height: 30px;top:185px;}
+        #toggle div {
+            height: 5px;
+            background: white;
+            margin: 4px auto;
+            transition: all 0.3s;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+        #toggle.on .one {transform: rotate(45deg) translate(5px, 5px);}
+        #toggle.on .two {opacity: 0;}
+        #toggle.on .three {transform: rotate(-45deg) translate(7px, -8px);}
+        .margin{margin-top: 5px;margin-bottom: 1px;margin-left: 20px;margin-right: 20px;}
+        canvas {z-index: 100;}
+        .labelPercentage {font-size: x-large;}
+        .labelText {display:none;/*font-size: small;color: #CCCCCC;*/}
+        .labelContainer {display: block;text-align: center;width: 100px;font-family: Helvetica;}
+        .myClass{ transform: translateY(50%)}
     </style>
 {% endblock %}
 {% block content %}
     {% block header %}{{ parent() }}{% endblock %}
-    <div class="row">
-        <h1 class="text-left">&nbsp&nbsp Swiming list</h1>
-        <br>
-        <br>
-    </div>
-    <div class="row">
-        <div class="col-md-6"> {# table #}
+        <div class="container-fluid nopadding center">
+    <div class="row-fluid" >
+        <div class="col col-md-1 nopadding" id="toggle">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+        <div class="col col-md-1 nopadding" id="col_nav">
+            <div id="navigation">
+                <a class="link" href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/index">
+                    <div class="content" id="content_home">
+                        <i class="material-icons md-40 md-inactive" id="home">home</i>
+                    </div>
+                </a>
+                <a class="link" href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/walking">
+                    <div class="content" id="content_walk">
+                        <i class="material-icons md-40 md-inactive" id="walk">directions_walk</i>
+                    </div>
+                </a>
+                <a class="link" href="#">
+                    <div class="content" id="content_bike">
+                        <i class="material-icons md-40 md-inactive" id="bike">directions_bike</i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col col-md-4"> {# table #}
             <div id="div_table">
                 <table class="tablesorter table table-condensed" id="myTable">
                     <thead>
-                        <tr>
-                            {# <th class="header_cursor" id="th_id">Id</th> #}
-                            <th class="header_cursor">Date</th>
-                            <th class="header_cursor">Distance</th>
-                            <th class="header_cursor">Swiming pool</th>
-                            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for swiming in swimings %}
-                            <tr class="rows">
-                                <td>{{ swiming.date|date("d/m/Y") }}</td>
-                                <td>{{ swiming.distance }}</td>
-                                <td>{{ swiming.swimmingPool }}</td>
-                                <td>
-                                    <a href="{{ path('swiming_show', { 'id': swiming.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
-                                    <a href="{{ path('swiming_edit', { 'id': swiming.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
-                                    <a href="{{ path('swiming_delete', { 'id': swiming.id }) }}" class="btn btn-md glyphicon  glyphicon-trash" role="button"></a>
-                                </td>
+                            <tr>
+                                <th class="header_cursor">Date</th>
+                                <th class="header_cursor">Distance</th>
+                                <th class="header_cursor">Swimming pool</th>
+                                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
+                        </thead>
+                        <tbody>
+                            {% for swiming in swimings %}
+                                <tr class="rows">
+                                    <td>{{ swiming.date|date("d/m/Y") }}</td>
+                                    <td>{{ swiming.distance }}</td>
+                                    <td>{{ swiming.swimmingPool }}</td>
+                                    <td>
+                                        <a href="{{ path('swiming_show', { 'id': swiming.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
+                                        <a href="{{ path('swiming_edit', { 'id': swiming.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
+                                        <a href="{{ path('swiming_delete', { 'id': swiming.id }) }}" class="btn btn-md glyphicon  glyphicon-trash" role="button"></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
                 </table>
             </div>
+            <a id="create" href="{{ path('swiming_new') }}">New Swimming Row</a>
         </div> {# end table #}
-        <div class="col-md-6"> {# graphic area #}
-            <div class="row graphic-area">
-                
+        <div class="col col-md-offset-1 col-md-5"> {# graphic area #}
+            <br>
+            <div class="graphic-area">
+                <div id="container" class="margin" role="group"></div>
+                <br>
+            </div>
+            <div class="row">
+                <div class="col col-md-12">
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6">
+                    <nav>
+                      <ul class="pagination pagination-sm">
+                        <li class="page-item disabled" id="first"><a class="page-link" href="#">&larr; First</a></li>
+                        <li class="page-item" id="previous">
+                          <a class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span>Previous</span>
+                          </a>
+                        </li>
+                        <li class="page-item" id="next">
+                          <a class="page-link" aria-label="Next">
+                            <span>Next</span>
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                        <li class="page-item disabled" id="last"><a class="page-link" href="#">Last &rarr;</a></li>
+                      </ul>
+                    </nav>
+                </div>
+                <div class="col col-md-5">
+                    <br>
+                    <div class="input-group input-group-sm">
+                      <input type="date" class="form-control" id="search_by_date">
+                    </div>
+                </div>
+                <div class="col col-md-1">
+                    <br>
+                    <button type="button" class="btn btn-default btn-sm" id="btn_settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </button>
+                </div>
             </div>
         </div> {# graphic area #}
-    </div> {# end row #}
-    <div class="row">
-        <div class="col col-md-2">
-            <a id="create" href="{{ path('swiming_new') }}">Create a new walking</a>
-        </div>
     </div>
+</div>
+
     {% block footer %} {{ parent() }} {% endblock %}
+{% endblock %} {#end block content#}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src={{ asset('assets/vendor/js/chart.min.js')}}></script>
+    <script type="text/javascript" src={{ asset('assets/vendor/js/pretty-doughtnut.js')}}></script>
+    <script type="text/javascript"  src={{ asset('assets/js/swimming.js') }}></script>
 {% endblock %}

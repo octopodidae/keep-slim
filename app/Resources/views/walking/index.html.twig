@@ -37,15 +37,16 @@
         #ex1Slider .slider-selection {background: #BABABA;}
         .my-div {
             position: absolute;
-            width: 58px;
+            width: 9%;
             bottom:0;
             max-height: 280px;
             color: black;
             font-size: 0.9em;
             font-weight: bold;
+            box-shadow: 3px 0px 5px rgba(0,0,0,0.3);
         }
-        .span-steps {position: relative;bottom: 18px;display:inline-block; background-color: #fff;}
-        .span-km{position: absolute;bottom:0px;color:white;display:inline-block;font-size: 0.9em;font-weight: bold;text-align: center;left: 8px;font-weight: bold;}
+        .span-steps {position: relative;bottom: 20px;background-color: #fff;}
+        .span-km{position: absolute;bottom:0px;color:white;;font-size: 0.9em;font-weight: bold;text-align: center;left: 2%;}
         #line {
             position: absolute;
             bottom: 100px;
@@ -86,6 +87,7 @@
             height: 70px;
             text-align: center;
             margin: 10px;
+            box-shadow: 0px 0px 10px rgba(255,255,255,0.3);
         }
         #col_nav {top:55px;}
         .nopadding {padding: 1px !important;margin: 1px !important;}
@@ -108,7 +110,7 @@
 {% block content %}
     {% block header %}{{ parent() }}{% endblock %}
 <div class="container-fluid nopadding center">
-    <div class="row-fluid align-middle" >
+    <div class="row-fluid" >
         <div class="col col-md-1 nopadding" id="toggle">
             <div class="one"></div>
             <div class="two"></div>
@@ -121,7 +123,7 @@
                         <i class="material-icons md-40 md-inactive" id="home">home</i>
                     </div>
                 </a>
-                <a class="link" href="#">
+                <a class="link" href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/swiming">
                     <div class="content" id="content_pool">
                         <i class="material-icons md-40 md-inactive" id="pool">pool</i>
                     </div>
@@ -163,7 +165,7 @@
                     </tbody>
                 </table>
             </div>
-            <a id="create" href="{{ path('walking_new') }}">Create a new walking</a>
+            <a id="create" href="{{ path('walking_new') }}">New Walking Row</a>
         </div> {# end table #}
         <div class="col col-md-offset-1 col-md-5"> {# graphic area #}
             <br>
@@ -217,17 +219,6 @@
         </div> {# graphic area #}
     </div>
 </div>
-
-{# <div>
-   
-    {% for w in walkings %}
-          <span class="{% if loop.index is even %}pair{% else %}impair{% endif %}">
-    {{ w.distance }}
-  </span>
-    {% endfor %}
-    
-</div> #}
-
 
     {% block footer %} {{ parent() }} {% endblock %}
 {% endblock %} {#end block content#}

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ parent() }} - Walking - new{% endblock %}
+{% block title %}{{ parent() }} - Add{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <style>
@@ -9,9 +9,9 @@
     </style>
 {% endblock %}
 {% block content %}
-    {% block header %}{{ parent() }}{% endblock %}
-    <div class="container align-middle">
-        <h3>Walking creation</h3>
+    {% block header %}{{ parent() }} {% endblock %}
+    <div class="container">
+        <h3>New Walking Row</h3>
         <br>
         {% form_theme form 'bootstrap_3_layout.html.twig'  %}
         {{ form_start(form) }}

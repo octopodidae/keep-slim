@@ -30,7 +30,7 @@
                 h1 {font-family:myFontTitle;color: white;font-size: 60px;}
                 .align-middle {margin-top: 10%; margin-bottom: 15%;}
                 #footer{padding: 20px; height: 10%; background-image: url({{ asset('assets/images/footer-header.jpg') }});}
-                #header{height: 15%; background-image: url({{ asset('assets/images/footer-header.jpg') }});}
+                #header{background-image: url({{ asset('assets/images/footer-header.jpg') }});}
                 a {color: #4975FB;}
                 a:hover{color:#924DE6;}
                 a:hover, a:visited, a:link, a:active{text-decoration: none; }
@@ -41,13 +41,14 @@
                     box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
                     border-radius: 10px;
                 }
+                .jumbotron {padding-top: 10px;padding-bottom: 10px;color: white;}
             </style>
         {% endblock %}
     </head>
     <body>
     {% block content %}
         {% block header %}
-            <div class="row-fluid text-center navbar-fixed-top" id="header">
+            <div class="jumbotron text-center" id="header">
                 <h1>Keep Slim</h1>
             </div>
         {% endblock %}

@@ -10,7 +10,7 @@ $(document).ready(function() {
     var ip = '127.0.0.1';
     var port = ':8081';
     var graphic_area = $('.graphic-area');
-    var margin_left  = 88;
+    /*var margin_left  = 0.5%;*/
     var speed = 500;
     var line = $('#line');
     var previous = $('#previous');
@@ -169,7 +169,7 @@ $(document).ready(function() {
 
     // Loop for animate all graphics //
     function animateAllGraphics() {
-        margin_left = 88;
+        margin_left = 0.5;
         rows
         .slice(start,end)
         .each(function( index ) {
@@ -179,10 +179,10 @@ $(document).ready(function() {
             km = parseFloat(km);
             var style = 'style="margin-left:' + margin_left + '%'+ '"';
             var attr = ' data-id=' + data_id; 
-            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' +  style + attr + '>'+ steps +'</div>' +
+            $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' + style + attr + '>'/*+ steps */+'</div>' +
             '<span class="span-km" ' +  style + '>' + km + 'km</span>').appendTo(graphic_area);
             animateGraphic(steps, $('#div_' + (index+1)), speed, km);
-            margin_left-=9.5;
+           margin_left+=10;
         });
         sumFct(); 
         animateLine();
