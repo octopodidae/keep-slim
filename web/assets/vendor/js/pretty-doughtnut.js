@@ -10,8 +10,8 @@ var doughnutWidget = {
 
 	positionLabel: function(value) {
 		var container = {
-			top: $('#' + value).offset().top,
-			left: $('#' + value).offset().left,
+			top: $('#' + value).offsetTop,
+			left: $('#' + value).offsetLeft,
 			height: $('#' + value).height(),
 			width: $('#' + value).width()
 		}

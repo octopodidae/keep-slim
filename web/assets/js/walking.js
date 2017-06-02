@@ -6,9 +6,9 @@ $(document).ready(function() {
 
     // Variables //
     var my_table = $('#myTable');
-    var protocole = 'http://';
+    /*var protocole = 'http://';
     var ip = '127.0.0.1';
-    var port = ':8081';
+    var port = ':8081';*/
     var graphic_area = $('.graphic-area');
     /*var margin_left  = 0.5%;*/
     var speed = 500;

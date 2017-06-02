@@ -10,7 +10,7 @@
 
 $(document).ready(function() {  
     
-   var toogle = $("#toggle");
+    var toogle = $("#toggle");
     var nav = $("#navigation");
     var home = $("#home");
     var walk = $("#walk");
@@ -21,11 +21,18 @@ $(document).ready(function() {
     var rows = $(".rows");
     var sum = 0;
     var goal = 3000;
+    var mySlider = $('#mySlider');
+    var settings_btn = $('#btn_settings'); 
+    var background_slider = $('.background-slider');
+    var myColor = "";
+    var graphic_area = $('.graphic-area');
+    var water = $('.water');
     
+    animateWater();
+
     // Vertical Navigation //
     toogle.click(function() {
         $(this).toggleClass("on");
-        /*nav.slideToggle();*/
         nav.animate({width: 'toggle'});
     });
 
@@ -63,12 +70,30 @@ $(document).ready(function() {
             bike.addClass('md-light md-inactive');
         })
 
+    // Slider //
+    mySlider
+        .slider({
+          formatter: function(value) {
+               return value;
+            }
+        })
+    mySlider
+       .on('slideStop', function() {
+           goal = $(this).slider('getValue');
+           /*water.css('height', '0em');*/
+           
+           animateWater();
+        });
+    
+    // Settings //
+    settings_btn.click(function() {
+       background_slider.slideToggle('fast');
+    });
+
    function sumFct() {
         sum = 0;
         $.each(rows, function( index, value ) {
             sum = sum + parseInt($(this).find("td:eq(1)").text());
-            //console.log( $(this).find("td:eq(1)").text() );
-            //console.log(sum);
         });
         sum = Math.round((sum/goal)*100);
         if (sum > 100)
@@ -76,8 +101,8 @@ $(document).ready(function() {
         return sum;
     }
 
-    function colorFct() {
-        var myColor;
+    /*function colorFct() {
+        myColor = "";
         var mySum = sumFct(); 
         if (mySum == 100){
             myColor = '#AFC440'
@@ -89,29 +114,19 @@ $(document).ready(function() {
             myColor ='#EF5252'
         }
         return myColor;
-    }
-    /*console.log(sumFct());*/
+    }*/
 
-   doughnutWidget.options = {
-        container: $('#container'),
-        width: 100,
-        height: 100,
-        class: 'myClass',
-        cutout: 50
-      };
-    doughnutWidget.render(data());
-    setInterval(init, 2000);
-    function init() {
-      doughnutWidget.render(data());
-    }
-    function data() {
-        var data = {
-        pending: {
-          val: sumFct(),
-          color: colorFct()
+    function animateWater() {
+       /* water.removeClass('water-animate');
+        water.addClass('water-animate');*/
+        water.toggleClass("water-animate");
+        if (sumFct() >= 50 && sumFct() < 100) {
+            water.css('height', '18em');
+        } else if (sumFct() == 100) {
+            water.css('height', '28em');
         }
-      };
-      return data;
+        else if (sumFct() < 50) {
+            water.css('height', '8em');
+        }
     }
-  
 })
