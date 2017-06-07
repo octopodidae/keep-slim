@@ -10,7 +10,7 @@
 {% block content %}
     {% block header %}{{ parent() }}{% endblock %}
     <div class="container">
-        <h3>Swiming edit</h3>
+        <h3>Swimming edit</h3>
         <br>
         {% form_theme edit_form 'bootstrap_3_layout.html.twig'  %}
         {{ form_start(edit_form) }}
@@ -18,7 +18,7 @@
         <input type="submit" value="Save" class="btn btn-warning" />
         {{ form_end(edit_form) }}
         <br>
-        <p><a href="{{ path('swiming_index') }}">Back to the list</a></p>
+        <p><a href="{{ path('swimming_index') }}">Back to the list</a></p>
     </div>
     {% block footer %}{{ parent() }}{% endblock %}
 {% endblock %}

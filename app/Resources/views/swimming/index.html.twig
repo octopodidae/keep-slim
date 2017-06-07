@@ -12,11 +12,15 @@
     box-shadow: 10px 10px 5px #888888;
     border-radius: 20px;
     background-color: rgb(255,255,255);
-    /*text-align: center;*/
-    /*width: 100%;*/
-    /*background-color: rgb(255,255,255);*/
     position: relative;
     }
+    #line {
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background-color: #AFC440;
+            z-index: 100;
+        }
     #myTable > thead > tr > th,
     #myTable > tbody > tr > th,
     #myTable > tfoot > tr > th,
@@ -66,16 +70,10 @@
     border-radius: 10px;
     }
     div.tooltip.tooltip-main.top{font-size: 10px;}
-    /*.margin{margin-top: 5px;margin-bottom: 1px;margin-left: 20px;margin-right: 20px;}*/
-    /*canvas {z-index: 100;}
-    .labelPercentage {font-size: x-large;}
-    .labelText {display:none;/*font-size: small;color: #CCCCCC;*/}
-    /*.labelContainer {display: block;text-align: center;width: 100px;font-family: Helvetica;}
-    .myClass{ transform: translateY(50%)}*/
     #glass {
     /*background: rgba( 255, 255, 255);*/
     width: 300px;
-    height: 300px;
+    height: 350px;
     position: relative;
     border-radius: 100%;
     background-color: rgba(255,255,255, 0.5);
@@ -88,21 +86,20 @@
     width: 100%;
     height: 0em;
     border-radius: 100%;
-    -webkit-transition: all 3s ease-out;
-    -moz-transition: all 3s ease-out;
-    -o-transition: all 3s ease-out;
-    transition: all 3s ease-out;
+    -webkit-transition: all 2s ease-out;
+    -moz-transition: all 2s ease-out;
+    -o-transition: all 2s ease-out;
+    transition: all 2s ease-out;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     }
    .water-animate {
-    /*height: 23em;*/
     background-position: top left;
-    -webkit-transition: all 3s ease-out;
-    -moz-transition: all 3s ease-out;
-    -o-transition: all 3s ease-out;
-    transition: all 3s ease-out;
+    -webkit-transition: all 2s ease-out;
+    -moz-transition: all 2s ease-out;
+    -o-transition: all 2s ease-out;
+    transition: all 2s ease-out;
     }
     
     </style>
@@ -118,12 +115,12 @@
             </div>
             <div class="col col-md-1 nopadding" id="col_nav">
                 <div id="navigation">
-                    <a class="link" href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/index">
+                    <a class="link" href="http://127.0.0.1/keep_slim/web/app_dev.php/index">
                         <div class="content" id="content_home">
                             <i class="material-icons md-40 md-inactive" id="home">home</i>
                         </div>
                     </a>
-                    <a class="link" href="http://127.0.0.1:8081/keep_slim/web/app_dev.php/walking">
+                    <a class="link" href="http://127.0.0.1/keep_slim/web/app_dev.php/walking">
                         <div class="content" id="content_walk">
                             <i class="material-icons md-40 md-inactive" id="walk">directions_walk</i>
                         </div>
@@ -147,27 +144,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for swiming in swimings %}
+                            {% for swimming in swimmings %}
                                 <tr class="rows">
-                                    <td>{{ swiming.date|date("d/m/Y") }}</td>
-                                    <td>{{ swiming.distance }}</td>
-                                    <td>{{ swiming.swimmingPool }}</td>
+                                    <td>{{ swimming.date|date("d/m/Y") }}</td>
+                                    <td>{{ swimming.distance }}</td>
+                                    <td>{{ swimming.swimmingPool }}</td>
                                     <td>
-                                        <a href="{{ path('swiming_show', { 'id': swiming.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
-                                        <a href="{{ path('swiming_edit', { 'id': swiming.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
-                                        <a href="{{ path('swiming_delete', { 'id': swiming.id }) }}" class="btn btn-md glyphicon  glyphicon-trash" role="button"></a>
+                                        <a href="{{ path('swimming_show', { 'id': swimming.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
+                                        <a href="{{ path('swimming_edit', { 'id': swimming.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
+                                        <a href="{{ path('swimming_delete', { 'id': swimming.id }) }}" class="btn btn-md glyphicon  glyphicon-trash" role="button"></a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
-                <a id="create" href="{{ path('swiming_new') }}">New Swimming Row</a>
+                <a id="create" href="{{ path('swimming_new') }}">New Swimming Row</a>
             </div> {# end table #}
             <div class="col col-md-offset-2 col-md-4"> {# graphic area #}
                 <br>
                 <div class="row graphic-area">
                     <div id="container">
+                        <div id="line"></div>
                         <div id="glass">
                             <div class="water"></div>
                         </div>

@@ -20,7 +20,10 @@ $(document).ready(function() {
     var content_bike = $("#content_bike");
     var rows = $(".rows");
     var sum = 0;
+    var percentage = 0;
+    var px = 0;
     var goal = 3000;
+    var line = $('#line');
     var mySlider = $('#mySlider');
     var settings_btn = $('#btn_settings'); 
     var background_slider = $('.background-slider');
@@ -80,8 +83,6 @@ $(document).ready(function() {
     mySlider
        .on('slideStop', function() {
            goal = $(this).slider('getValue');
-           /*water.css('height', '0em');*/
-           
            animateWater();
         });
     
@@ -92,12 +93,15 @@ $(document).ready(function() {
 
    function sumFct() {
         sum = 0;
+        //percentage = 0;
         $.each(rows, function( index, value ) {
             sum = sum + parseInt($(this).find("td:eq(1)").text());
         });
-        sum = Math.round((sum/goal)*100);
-        if (sum > 100)
-            sum = 100;
+        //console.log(sum);
+        //sum = Math.round((sum/goal)*100);
+        /*if (sum > 3800)
+            sum = 3800;*/
+        console.log(sum);
         return sum;
     }
 
@@ -116,17 +120,25 @@ $(document).ready(function() {
         return myColor;
     }*/
 
+    function animateLine() {
+        if (goal == 2000)
+            line.css('bottom', '130px');
+        else if (goal == 3000)
+            line.css('bottom', '228px');
+        else if (goal == 4000)
+            line.css('bottom', '308px');
+        for (var i=0; i<5; i++) {
+            line.fadeOut('slow').fadeIn('slow');
+        };
+    }
+
     function animateWater() {
-       /* water.removeClass('water-animate');
-        water.addClass('water-animate');*/
         water.toggleClass("water-animate");
-        if (sumFct() >= 50 && sumFct() < 100) {
-            water.css('height', '18em');
-        } else if (sumFct() == 100) {
-            water.css('height', '28em');
-        }
-        else if (sumFct() < 50) {
-            water.css('height', '8em');
-        }
+        px = (sumFct()/10);
+        if (px >= 400)
+            px = 380;
+        water.css('height', px + 'px');
+        animateLine();
+        console.log(px);
     }
 })

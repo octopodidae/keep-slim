@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Swiming
+ * Swimming
  *
- * @ORM\Table(name="swiming")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SwimingRepository")
+ * @ORM\Table(name="swimming")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SwimmingRepository")
  */
-class Swiming
+class Swimming
 {
     /**
      * @var int
@@ -36,13 +36,6 @@ class Swiming
     private $distance;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="NbOfTimesPerWeek", type="smallint")
-     */
-    private $nbOfTimesPerWeek;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="SwimmingPool", type="string", length=255, nullable=true)
@@ -65,7 +58,7 @@ class Swiming
      *
      * @param \DateTime $date
      *
-     * @return Swiming
+     * @return Swimming
      */
     public function setDate($date)
     {
@@ -89,7 +82,7 @@ class Swiming
      *
      * @param integer $distance
      *
-     * @return Swiming
+     * @return Swimming
      */
     public function setDistance($distance)
     {
@@ -109,35 +102,11 @@ class Swiming
     }
 
     /**
-     * Set nbOfTimesPerWeek
-     *
-     * @param integer $nbOfTimesPerWeek
-     *
-     * @return Swiming
-     */
-    public function setNbOfTimesPerWeek($nbOfTimesPerWeek)
-    {
-        $this->nbOfTimesPerWeek = $nbOfTimesPerWeek;
-
-        return $this;
-    }
-
-    /**
-     * Get nbOfTimesPerWeek
-     *
-     * @return int
-     */
-    public function getNbOfTimesPerWeek()
-    {
-        return $this->nbOfTimesPerWeek;
-    }
-
-    /**
      * Set swimmingPool
      *
      * @param string $swimmingPool
      *
-     * @return Swiming
+     * @return Swimming
      */
     public function setSwimmingPool($swimmingPool)
     {

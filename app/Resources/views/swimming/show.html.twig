@@ -10,40 +10,40 @@
 {% block content %}
     {% block header %}{{ parent() }}{% endblock %}
     <div class="container">
-        <h3>Swiming</h3>
+        <h3>Swimming</h3>
         <br>
         <table class="table">
             <tbody>
                 <tr>
                     <th>Id</th>
-                    <td>{{ swiming.id }}</td>
+                    <td>{{ swimming.id }}</td>
                 </tr>
                 <tr>
                     <th>Date</th>
-                    <td>{{ swiming.date|date("d/m/Y") }}</td>
+                    <td>{{ swimming.date|date("d/m/Y") }}</td>
                 </tr>
                 <tr>
                     <th>Distance</th>
-                    <td>{{ swiming.distance }}</td>
+                    <td>{{ swimming.distance }}</td>
                 </tr>
                 {# <tr>
                     <th>Nboftimesperweek</th>
-                    <td>{{ swiming.nbOfTimesPerWeek }}</td>
+                    <td>{{ swimming.nbOfTimesPerWeek }}</td>
                 </tr> #}
                 <tr>
                     <th>Swimming pool</th>
-                    <td>{{ swiming.swimmingPool }}</td>
+                    <td>{{ swimming.swimmingPool }}</td>
                 </tr>
             </tbody>
         </table>
          <br>
-            <p><a href="{{ path('swiming_index') }}">Back to the list</a></p>
+            <p><a href="{{ path('swimming_index') }}">Back to the list</a></p>
         {# <ul>
             <li>
-                <a href="{{ path('swiming_index') }}">Back to the list</a>
+                <a href="{{ path('swimming_index') }}">Back to the list</a>
             </li>
             <li>
-                <a href="{{ path('swiming_edit', { 'id': swiming.id }) }}">Edit</a>
+                <a href="{{ path('swimming_edit', { 'id': swimming.id }) }}">Edit</a>
             </li>
             <li>
                 {{ form_start(delete_form) }}

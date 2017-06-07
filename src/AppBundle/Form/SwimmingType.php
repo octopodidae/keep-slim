@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class SwimingType extends AbstractType
+class SwimmingType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -26,7 +26,7 @@ class SwimingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Swiming'
+            'data_class' => 'AppBundle\Entity\Swimming'
         ));
     }
 
@@ -35,7 +35,7 @@ class SwimingType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_swiming';
+        return 'appbundle_swimming';
     }
 
 
