@@ -7,19 +7,22 @@
     background-color: #f5f5f5;
     }
     .graphic-area {
+    position: relative;
     height: 350px;
     width: 300px;
     box-shadow: 10px 10px 5px #888888;
     border-radius: 20px;
-    background-color: rgb(255,255,255);
-    position: relative;
+    /*background-color: rgb(255,255,255);*/
+    background-image: url({{ asset('assets/images/piscine6.jpg') }});
     }
+    #container { border-radius: 20px;}
     #line {
             position: absolute;
             height: 2px;
             width: 100%;
             background-color: #AFC440;
             z-index: 100;
+            display: none;
         }
     #myTable > thead > tr > th,
     #myTable > tbody > tr > th,
@@ -75,24 +78,24 @@
     width: 300px;
     height: 350px;
     position: relative;
-    border-radius: 100%;
+    border-radius: 20px;
     background-color: rgba(255,255,255, 0.5);
     }
     .water {
-    background-image: url("https://priteshgupta.com/demos/fill/waves.png");
+    /*background-image: url({{ asset('assets/images/water.png') }});*/
     background-position: top right;
     position: absolute;
     bottom: 0px;
     width: 100%;
     height: 0em;
-    border-radius: 100%;
     -webkit-transition: all 2s ease-out;
     -moz-transition: all 2s ease-out;
     -o-transition: all 2s ease-out;
     transition: all 2s ease-out;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    opacity: 0.6;
     }
    .water-animate {
     background-position: top left;
@@ -217,7 +220,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript"  src={{ asset('assets/vendor/js/bootstrap-slider.min.js') }}></script>
-    <script type="text/javascript" src={{ asset('assets/vendor/js/chart.min.js')}}></script>
-    <script type="text/javascript" src={{ asset('assets/vendor/js/pretty-doughtnut.js')}}></script>
     <script type="text/javascript"  src={{ asset('assets/js/swimming.js') }}></script>
 {% endblock %}

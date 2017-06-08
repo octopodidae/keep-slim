@@ -106,14 +106,14 @@ class SwimmingController extends Controller
      * @Route("/delete/{id}", name="swimming_delete")
      * @Method({"GET", "POST"})
      */
-    public function deleteAction(Request $request, Walking $walking)
+    public function deleteAction(Request $request, Swimming $swimming)
     {
         $em = $this
             ->getDoctrine()
             ->getManager();
 
         $swimming = $em
-            ->getRepository('AppBundle:Walking')
+            ->getRepository('AppBundle:Swimming')
             ->find($swimming->getId());
 
         $em->remove($swimming);
