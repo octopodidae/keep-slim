@@ -203,23 +203,39 @@ $(document).ready(function() {
             rows.hide();
             rows.slice(start,end).show();
             animateWater();
+            console.log('start = ' + start);
+            console.log('end = ' + end);
         }
     });
-   
+
     // Next //
     next.click(function() {
-         if (first_row.is(':visible')){
+
+        if (first_row.is(':visible')){
            /* next.attr('disabled', 'disabled');
             next.addClass('disabled');
             previous.removeAttr('disabled');
             previous.removeClass('disabled');
             previous.addClass('active');*/
         } else {
-            start-=7;
-            end-=7;
-            rows.hide();
-            rows.slice(start,end).show();
-            animateWater();
+             if (start < 7) {
+                console.log('start < 0');  
+                start = 0;
+                end = 7;
+                console.log('start =' + start + '; end = ' + end);
+                rows.hide();
+                rows.slice(start,end).show();
+                animateWater(); 
+               
+           } else {
+                start-=7;
+                end-=7;
+                rows.hide();
+                rows.slice(start,end).show();
+                animateWater();
+                console.log('start = ' + start);
+                console.log('end = ' + end);
+            }
         }
     });
 

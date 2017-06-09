@@ -32,6 +32,8 @@ $(document).ready(function() {
     var content_pool = $("#content_pool");
     var content_bike = $("#content_bike");
     var originColor = '';
+    var first_btn = $('#first');
+    var last_btn = $('#last');
 
     // Tablesorter //
     my_table.tablesorter();
@@ -203,6 +205,8 @@ $(document).ready(function() {
             cleanGraphiArea();
             rows.slice(start,end).show();
             animateAllGraphics();
+            console.log('start = ' + start);
+            console.log('end = ' + end);
         }
     });
    
@@ -215,13 +219,49 @@ $(document).ready(function() {
             previous.removeClass('disabled');
             previous.addClass('active');*/
         } else {
-            start-=7;
-            end-=7;
-            rows.hide();
-            cleanGraphiArea();
-            rows.slice(start,end).show();
-            animateAllGraphics();
+             if (start < 7) {
+                console.log('start < 0');  
+                start = 0;
+                end = 7;
+                cleanGraphiArea();
+                console.log('start =' + start + '; end = ' + end);
+                rows.hide();
+                rows.slice(start,end).show();
+                animateAllGraphics();
+               
+           }  else {
+                start-=7;
+                end-=7;
+                rows.hide();
+                cleanGraphiArea();
+                rows.slice(start,end).show();
+                animateAllGraphics();
+                console.log('start = ' + start);
+                console.log('end = ' + end);
+               }
         }
+    });
+
+    first_btn.click(function() {
+        rows.slice(start, end).hide();
+        end = rows.length;
+        start = end-7;
+        cleanGraphiArea();
+        rows.slice(start).show();
+        animateAllGraphics();
+        console.log('start = ' + start);
+        console.log('end = ' + end);
+    });
+
+    last_btn.click(function() {
+        rows.slice(start, end).hide();
+        end = 7;
+        start = 0;
+        cleanGraphiArea();
+        rows.slice(start, end).show();
+         animateAllGraphics();
+        console.log('start = ' + start);
+        console.log('end = ' + end);
     });
 
     // Transform graphic when over on row //
