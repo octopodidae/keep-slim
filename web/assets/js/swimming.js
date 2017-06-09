@@ -1,5 +1,5 @@
 /*
-blaurancin
+Created by Bertrand on 06/2017.
  */
 
 $(document).ready(function() {  
@@ -23,7 +23,15 @@ $(document).ready(function() {
     var background_slider = $('.background-slider');
     var water_color = '';
     var water = $('.water');
+    var start = 0; 
+    var end = 7;
+    var previous = $('#previous');
+    var next = $('#next');
+    var first_row = rows.first();
+    var last_row = rows.last();
     
+    // Show / Animate last ten rows when page is loaded //
+    rows.slice(start,end).show();
     animateWater();
 
     // Vertical Navigation //
@@ -87,7 +95,7 @@ $(document).ready(function() {
    function sumFct() {
         sum = 0;
         //percentage = 0;
-        $.each(rows, function( index, value ) {
+        $.each(rows.slice(start,end), function( index, value ) {
             sum = sum + parseInt($(this).find('td:eq(1)').text());
         });
         //console.log(sum);
@@ -177,4 +185,40 @@ $(document).ready(function() {
         animateLine();
         //console.log(px);
     }
+
+    // Previous //
+    previous.click(function() {
+         if (last_row.is(':visible')){
+            /*previous.attr('disabled', 'disabled');
+            previous.addClass('disabled');
+            next.removeAttr('disabled');
+            next.removeClass('disabled');
+            next.addClass('active');*/
+        } else {
+            /*previous.addClass('active');*/
+            start+=7;
+            end+=7;
+            rows.hide();
+            rows.slice(start,end).show();
+            animateWater();
+        }
+    });
+   
+    // Next //
+    next.click(function() {
+         if (first_row.is(':visible')){
+           /* next.attr('disabled', 'disabled');
+            next.addClass('disabled');
+            previous.removeAttr('disabled');
+            previous.removeClass('disabled');
+            previous.addClass('active');*/
+        } else {
+            start-=7;
+            end-=7;
+            rows.hide();
+            rows.slice(start,end).show();
+            animateWater();
+        }
+    });
+
 })

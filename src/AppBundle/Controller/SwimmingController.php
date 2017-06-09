@@ -25,7 +25,7 @@ class SwimmingController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $swimmings = $em->getRepository('AppBundle:Swimming')->findAll();
+        $swimmings = $em->getRepository('AppBundle:Swimming')->findBy(array(), array('date' => 'desc'));
 
         return $this->render('swimming/index.html.twig', array(
             'swimmings' => $swimmings,

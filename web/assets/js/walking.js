@@ -6,18 +6,14 @@ $(document).ready(function() {
 
     // Variables //
     var my_table = $('#myTable');
-    /*var protocole = 'http://';
-    var ip = '127.0.0.1';
-    var port = ':8081';*/
     var graphic_area = $('.graphic-area');
-    /*var margin_left  = 0.5%;*/
     var speed = 500;
     var line = $('#line');
     var previous = $('#previous');
     var next = $('#next');
     var rows = $('.rows');
     var start = 0; 
-    var end = 10;
+    var end = 7;
     var steps ;
     var km;
     var first_row = rows.first();
@@ -169,9 +165,11 @@ $(document).ready(function() {
 
     // Loop for animate all graphics //
     function animateAllGraphics() {
-        margin_left = 0.5;
-        rows
+        margin_left = 1.5;
+        $(rows
         .slice(start,end)
+        .get()
+        .reverse())
         .each(function( index ) {
             var data_id = $(this).attr('data-id');
             steps = $( this ).find(':nth-child(3)').text();
@@ -182,7 +180,7 @@ $(document).ready(function() {
             $('<div class="my-div text-center"' + ' id="div_' + (index+1) + '" ' + style + attr + '>'/*+ steps */+'</div>' +
             '<span class="span-km" ' +  style + '>' + km + 'km</span>').appendTo(graphic_area);
             animateGraphic(steps, $('#div_' + (index+1)), speed, km);
-           margin_left+=10;
+           margin_left+=14;
         });
         sumFct(); 
         animateLine();
@@ -199,8 +197,8 @@ $(document).ready(function() {
             next.addClass('active');*/
         } else {
             /*previous.addClass('active');*/
-            start+=10;
-            end+=10;
+            start+=7;
+            end+=7;
             rows.hide();
             cleanGraphiArea();
             rows.slice(start,end).show();
@@ -217,8 +215,8 @@ $(document).ready(function() {
             previous.removeClass('disabled');
             previous.addClass('active');*/
         } else {
-            start-=10;
-            end-=10;
+            start-=7;
+            end-=7;
             rows.hide();
             cleanGraphiArea();
             rows.slice(start,end).show();

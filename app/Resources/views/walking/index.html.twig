@@ -27,17 +27,19 @@
         .rows:hover {background-color: #f5f5f5;}
         .graphic-area {
             height:100%;
+            width: 80%;
             min-height: 300px;
             box-shadow: 10px 10px 5px #888888;
             position: relative;
             bottom:0;
             left:0;
             border-radius: 4px;
+            margin: auto;
         }
         #ex1Slider .slider-selection {background: #BABABA;}
         .my-div {
             position: absolute;
-            width: 9%;
+            width: 13%;
             bottom:0;
             max-height: 280px;
             color: black;
@@ -67,6 +69,7 @@
         #search_by_date {margin-left: 18%;}
         #ex1Slider .slider-selection {background: #BABABA;}
         .slider.slider-horizontal{width: 100%;}
+        #slider_row, #row_pag {width: 80%;margin-right: auto;margin-left: auto;}    
         .background-slider {
             display: none;
             float: left;
@@ -79,7 +82,7 @@
             border-radius: 10px;
         }
         div.tooltip.tooltip-main.top{font-size: 10px;}
-        #sum {padding: 0;font-size: 1.5em;font-weight: bold;}
+        #sum {padding: 0;font-size: 1.5em;font-weight: bold;width: 80%;margin-left: auto;margin-right: auto;}
         #navigation{display: none;}
         .md-40 { font-size: 40px; }
         .content{
@@ -143,18 +146,15 @@
                             <th class="header_cursor">Date</th>
                             <th class="header_cursor">Distance</th>
                             <th class="header_cursor">Step</th>
-                           {#  <th class="header_cursor">Comment</th> #}
                             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for walking in walkings %}
                         <tr data-url="{{ path('walking_index', {'id': walking.id}) }}" data-id="{{ walking.id }}" class="rows">
-                            {# <td>{{ walking.id }}</td> #}
                             <td>{{ walking.date|date("d/m/Y") }}</td>
                             <td>{{ walking.distance }}</td>
                             <td>{{ walking.step }}</td>
-                            {# <td>{{ walking.comment }}</td> #}
                             <td>
                                 <a href="{{ path('walking_show', { 'id': walking.id }) }}" class="btn btn-md glyphicon glyphicon-zoom-in" role="button"></a>
                                 <a href="{{ path('walking_edit', { 'id': walking.id }) }}" class="btn btn-md glyphicon  glyphicon-pencil" role="button"></a>
@@ -174,7 +174,7 @@
                 <div id="line"></div>
             </div>
             <br>
-            <div class="row">
+            <div class="row" id="slider_row">
                 <div class="col col-md-12 background-slider">
                    {# Slider #}
                     <div class="">
@@ -182,8 +182,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col col-md-6">
+            <div class="row" id="row_pag">
+                <div class="col col-md-11">
                     <nav>
                       <ul class="pagination pagination-sm">
                         <li class="page-item disabled" id="first"><a class="page-link" href="#">&larr; First</a></li>
@@ -203,12 +203,12 @@
                       </ul>
                     </nav>
                 </div>
-                <div class="col col-md-5">
+                {# <div class="col col-md-5">
                     <br>
                     <div class="input-group input-group-sm">
                       <input type="date" class="form-control" id="search_by_date">
                     </div>
-                </div>
+                </div> #}
                 <div class="col col-md-1">
                     <br>
                     <button type="button" class="btn btn-default btn-sm" id="btn_settings">
