@@ -29,6 +29,8 @@ $(document).ready(function() {
     var next = $('#next');
     var first_row = rows.first();
     var last_row = rows.last();
+    var first_btn = $('#first');
+    var last_btn = $('#last');
     
     // Show / Animate last ten rows when page is loaded //
     rows.slice(start,end).show();
@@ -221,4 +223,23 @@ $(document).ready(function() {
         }
     });
 
+    first_btn.click(function() {
+        rows.slice(start, end).hide();
+        end = rows.length;
+        start = end-7;
+        rows.slice(start).show();
+        animateWater();
+        console.log('start = ' + start);
+        console.log('end = ' + end);
+    });
+
+    last_btn.click(function() {
+        rows.slice(start, end).hide();
+        end = 7;
+        start = 0;
+        rows.slice(start, end).show();
+        animateWater();
+        console.log('start = ' + start);
+        console.log('end = ' + end);
+    });
 })
