@@ -116,15 +116,15 @@ $(document).ready(function() {
 
                     if (sum_for_color >= 2000){
                         //color = '#AFC440'
-                        water_color = 'http://127.0.0.1/keep_slim/web/assets/images/water_green.png';
+                        water_color = 'http://127.0.0.1:8081/keep-slim/web/assets/images/water_green.png';
                     }
                     else if (sum_for_color > 1000 && sum_for_color < 2000  ) {
                         //color = '#F59500'
-                        water_color = 'http://127.0.0.1/keep_slim/web/assets/images/water_orange.png';
+                        water_color = 'http://127.0.0.1:8081/keep-slim/web/assets/images/water_orange.png';
                     }
                     else {
                         //color ='#EF5252'
-                        water_color = 'http://127.0.0.1/keep_slim/web/assets/images/water_red.png';
+                        water_color = 'http://127.0.0.1:8081/keep-slim/web/assets/images/water_red.png';
                     }
 
         } 
@@ -132,15 +132,15 @@ $(document).ready(function() {
 
                     if (sum_for_color>= 3000){
                         //color = '#AFC440'
-                        water_color = 'http://127.0.0.1/keep_slim/web/assets/images/water_green.png';
+                        water_color = 'http://127.0.0.1:8081/keep-slim/web/assets/images/water_green.png';
                     }
                     else if (sum_for_color > 1500 && sum_for_color < 3000  ) {
                         //color = '#F59500'
-                        water_color = 'http://127.0.0.1/keep_slim/web/assets/images/water_orange.png';
+                        water_color = 'http://127.0.0.1:8081/keep-slim/web/assets/images/water_orange.png';
                     }
                     else {
                         //color ='#EF5252'
-                        water_color = 'http://127.0.0.1/keep_slim/web/assets/images/water_red.png';
+                        water_color = 'http://127.0.0.1:8081/keep-slim/web/assets/images/water_red.png';
                     }
 
         }
@@ -148,15 +148,15 @@ $(document).ready(function() {
 
                      if (sum_for_color >= 4000){
                         //color = '#AFC440'
-                        water_color = 'http://127.0.0.1/keep_slim/web/assets/images/water_green.png';
+                        water_color = 'http://127.0.0.1:8081/keep-slim/web/assets/images/water_green.png';
                     }
                     else if (sum_for_color > 2000 && sum_for_color < 4000  ) {
                         //color = '#F59500'
-                        water_color = 'http://127.0.0.1/keep_slim/web/assets/images/water_orange.png';
+                        water_color = 'http://127.0.0.1:8081/keep-slim/web/assets/images/water_orange.png';
                     }
                     else {
                         //color ='#EF5252'
-                        water_color = 'http://127.0.0.1/keep_slim/web/assets/images/water_red.png';
+                        water_color = 'http://127.0.0.1:8081/keep-slim/web/assets/images/water_red.png';
                     }
 
         }
@@ -203,8 +203,8 @@ $(document).ready(function() {
             rows.hide();
             rows.slice(start,end).show();
             animateWater();
-            console.log('start = ' + start);
-            console.log('end = ' + end);
+            /*console.log('start = ' + start);
+            console.log('end = ' + end);*/
         }
     });
 
@@ -219,10 +219,10 @@ $(document).ready(function() {
             previous.addClass('active');*/
         } else {
              if (start < 7) {
-                console.log('start < 0');  
+                /*console.log('start < 0');  */
                 start = 0;
                 end = 7;
-                console.log('start =' + start + '; end = ' + end);
+                /*console.log('start =' + start + '; end = ' + end);*/
                 rows.hide();
                 rows.slice(start,end).show();
                 animateWater(); 
@@ -233,8 +233,8 @@ $(document).ready(function() {
                 rows.hide();
                 rows.slice(start,end).show();
                 animateWater();
-                console.log('start = ' + start);
-                console.log('end = ' + end);
+                /*console.log('start = ' + start);
+                console.log('end = ' + end);*/
             }
         }
     });
@@ -245,8 +245,8 @@ $(document).ready(function() {
         start = end-7;
         rows.slice(start).show();
         animateWater();
-        console.log('start = ' + start);
-        console.log('end = ' + end);
+        /*console.log('start = ' + start);
+        console.log('end = ' + end);*/
     });
 
     last_btn.click(function() {
@@ -255,7 +255,7 @@ $(document).ready(function() {
         start = 0;
         rows.slice(start, end).show();
         animateWater();
-        console.log('start = ' + start);
-        console.log('end = ' + end);
+        /*console.log('start = ' + start);
+        console.log('end = ' + end);*/
     });
 })

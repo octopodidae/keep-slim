@@ -205,8 +205,8 @@ $(document).ready(function() {
             cleanGraphiArea();
             rows.slice(start,end).show();
             animateAllGraphics();
-            console.log('start = ' + start);
-            console.log('end = ' + end);
+            /*console.log('start = ' + start);
+            console.log('end = ' + end);*/
         }
     });
    
@@ -220,11 +220,11 @@ $(document).ready(function() {
             previous.addClass('active');*/
         } else {
              if (start < 7) {
-                console.log('start < 0');  
+                /*console.log('start < 0'); */ 
                 start = 0;
                 end = 7;
                 cleanGraphiArea();
-                console.log('start =' + start + '; end = ' + end);
+                /*console.log('start =' + start + '; end = ' + end);*/
                 rows.hide();
                 rows.slice(start,end).show();
                 animateAllGraphics();
@@ -236,8 +236,8 @@ $(document).ready(function() {
                 cleanGraphiArea();
                 rows.slice(start,end).show();
                 animateAllGraphics();
-                console.log('start = ' + start);
-                console.log('end = ' + end);
+                /*console.log('start = ' + start);
+                console.log('end = ' + end);*/
                }
         }
     });
@@ -249,8 +249,8 @@ $(document).ready(function() {
         cleanGraphiArea();
         rows.slice(start).show();
         animateAllGraphics();
-        console.log('start = ' + start);
-        console.log('end = ' + end);
+        /*console.log('start = ' + start);
+        console.log('end = ' + end);*/
     });
 
     last_btn.click(function() {
@@ -259,9 +259,9 @@ $(document).ready(function() {
         start = 0;
         cleanGraphiArea();
         rows.slice(start, end).show();
-         animateAllGraphics();
-        console.log('start = ' + start);
-        console.log('end = ' + end);
+        animateAllGraphics();
+        /*console.log('start = ' + start);
+        console.log('end = ' + end);*/
     });
 
     // Transform graphic when over on row //

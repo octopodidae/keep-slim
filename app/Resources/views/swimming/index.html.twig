@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ parent() }} - Swimming{% endblock %}
 {% block stylesheets %}
-     {{ parent() }}
+    {{ parent() }}
     <link rel="stylesheet" href={{ asset('assets/vendor/bootstrap/css/bootstrap-slider.min.css') }} />
     <style>
     .rows {display: none;}
@@ -17,7 +17,7 @@
     /*background-image: url({{ asset('assets/images/piscine9.jpg') }});
     background-repeat: no-repeat;*/
     background: aqua;
-    background: linear-gradient(darkblue, aqua, darkblue); 
+    background: linear-gradient(darkblue, aqua, darkblue);
     }
     #container { border-radius: 20px;}
     #line {
@@ -59,7 +59,7 @@
     backface-visibility: hidden;
     border-radius: 10px;
     }
-    #btn_settings {margin-left: 150px;}
+    /*#btn_settings {margin-left: 150px;}*/
     #toggle.on .one {transform: rotate(45deg) translate(5px, 5px);}
     #toggle.on .two {opacity: 0;}
     #toggle.on .three {transform: rotate(-45deg) translate(7px, -8px);}
@@ -100,7 +100,7 @@
     border-radius: 20px;
     opacity: 0.7;
     }
-   .water-animate {
+    .water-animate {
     background-position: top left;
     -webkit-transition: all 2s ease-out;
     -moz-transition: all 2s ease-out;
@@ -121,12 +121,12 @@
             </div>
             <div class="col col-md-1 nopadding" id="col_nav">
                 <div id="navigation">
-                    <a class="link" href="http://127.0.0.1/keep_slim/web/app_dev.php/index">
+                    <a class="link" href="http://127.0.0.1:8081/keep-slim/web/app_dev.php/index">
                         <div class="content" id="content_home">
                             <i class="material-icons md-40 md-inactive" id="home">home</i>
                         </div>
                     </a>
-                    <a class="link" href="http://127.0.0.1/keep_slim/web/app_dev.php/walking">
+                    <a class="link" href="http://127.0.0.1:8081/keep-slim/web/app_dev.php/walking">
                         <div class="content" id="content_walk">
                             <i class="material-icons md-40 md-inactive" id="walk">directions_walk</i>
                         </div>
@@ -186,33 +186,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col col-md-12">
+                <div class="row" id="row_pag">
+                    <div class="col col-md-6">
                         <nav>
                             <ul class="pagination pagination-sm">
-                                <li class="page-item {# disabled #}" id="first"><a class="page-link" href="#">&larr; First</a></li>
+                                <li class="page-item {# disabled #}" id="first"><a class="page-link" href="#">«</a></li>
                                 <li class="page-item" id="previous">
                                     <a class="page-link" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span>Previous</span>
+                                        <span aria-hidden="true">‹</span>
+                                        {#  <span>Previous</span> #}
                                     </a>
                                 </li>
                                 <li class="page-item" id="next">
                                     <a class="page-link" aria-label="Next">
-                                        <span>Next</span>
-                                        <span aria-hidden="true">&raquo;</span>
+                                        {# <span>Next</span> #}
+                                        <span aria-hidden="true">›</span>
                                     </a>
                                 </li>
-                                <li class="page-item {# disabled#}" id="last">
-                                    <a class="page-link" href="#">Last &rarr;</a>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-default btn-sm" id="btn_settings">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                    </button>
-                                </li>
+                                <li class="page-item {# disabled #}" id="last"><a class="page-link" href="#">{# Last &rarr; #}»</a></li>
                             </ul>
                         </nav>
+                    </div>
+                    {# <div class="col col-md-5">
+                        <br>
+                        <div class="input-group input-group-sm">
+                            <input type="date" class="form-control" id="search_by_date">
+                        </div>
+                    </div> #}
+                    <div class="col col-md-1">
+                        <br>
+                        <button type="button" class="btn btn-default btn-sm" id="btn_settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </button>
                     </div>
                 </div>
             </div> {# graphic area #}
